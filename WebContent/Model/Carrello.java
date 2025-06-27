@@ -25,14 +25,10 @@ public class Carrello
 		this.codice_carrello = codice_carrello;
 	}
 
-	/*public double getTotale() 
+	public double getTotale() 
 	{
-		totale = 0;
-		for(int i=0; i<this.prodotti.length; i++)
-			// legge 
-		
 		return totale;
-	}*/
+	}
 
 	public String[] getProdotti() {
 		return prodotti;

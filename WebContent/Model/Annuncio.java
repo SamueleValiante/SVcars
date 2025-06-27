@@ -7,6 +7,7 @@ public class Annuncio
     private String descrizione;
     private double prezzo;
     private String tipologia;
+    private String[] colore;
     private int km;
     private int anno;
     private String carburante;
@@ -21,7 +22,7 @@ public class Annuncio
     public Annuncio() {}
 
 
-	public Annuncio(String targa, String titolo, String descrizione, double prezzo, String tipologia, int km, int anno,
+	public Annuncio(String targa, String titolo, String descrizione, double prezzo, String tipologia, String[] colore, int km, int anno,
 			String carburante, String marca, String modello, int cilindrata, int n_porte, String citta, UtenteIscritto utente) 
 	{
 		this.targa = targa;
@@ -29,6 +30,7 @@ public class Annuncio
 		this.descrizione = descrizione;
 		this.prezzo = prezzo;
 		this.tipologia = tipologia;
+		this.colore = colore;
 		this.km = km;
 		this.anno = anno;
 		this.carburante = carburante;
@@ -83,6 +85,15 @@ public class Annuncio
 
 	public String getTipologia() {
 		return tipologia;
+	}
+	
+	public String[] getColore() {
+		return colore;
+	}
+	
+	public void setColore(String[] colore)
+	{
+		this.colore = colore;
 	}
 
 
