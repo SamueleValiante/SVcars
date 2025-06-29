@@ -44,7 +44,7 @@ public class DriverManagerConnectionPool
 		Connection connection;
 
 		if (!connessioniDisponibili.isEmpty()) {
-			connection = (Connection) connessioniDisponibili.get(0);
+			connection = connessioniDisponibili.get(0);
 			connessioniDisponibili.remove(0);
 
 			try {

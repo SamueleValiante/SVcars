@@ -1,13 +1,20 @@
 package Model;
 
-public class Annuncio 
+import java.io.Serializable;
+
+public class AnnuncioBean implements Serializable
 {
+	// numero seriale
+	private static final long serialVersionUID = 1L;
+	
+	// variabili d'istanza
 	private String targa;
+	private Boolean visibilita;
     private String titolo;
     private String descrizione;
     private double prezzo;
     private String tipologia;
-    private String[] colore;
+    private String colore;
     private int km;
     private int anno;
     private String carburante;
@@ -18,14 +25,15 @@ public class Annuncio
     private String citta;
     private String email;
 	
-    
-    public Annuncio() {}
+    // costruttore vuoto
+    public AnnuncioBean() {}
 
-
-	public Annuncio(String targa, String titolo, String descrizione, double prezzo, String tipologia, String[] colore, int km, int anno,
-			String carburante, String marca, String modello, int cilindrata, int n_porte, String citta, UtenteIscritto utente) 
+    // costruttore con parametri
+	public AnnuncioBean(String targa, Boolean visibilita, String titolo, String descrizione, double prezzo, String tipologia, String colore, int km, int anno,
+			String carburante, String marca, String modello, int cilindrata, int n_porte, String citta, UtenteIscrittoBean utente) 
 	{
 		this.targa = targa;
+		this.visibilita = visibilita;
 		this.titolo = titolo;
 		this.descrizione = descrizione;
 		this.prezzo = prezzo;
@@ -42,7 +50,9 @@ public class Annuncio
 		this.email = utente.getEmail();
 	}
 
-
+	
+	// GETTERS AND SETTERS
+	
 	public String getTarga() {
 		return targa;
 	}
@@ -52,6 +62,17 @@ public class Annuncio
 		this.targa = targa;
 	}
 
+	
+	public Boolean isVisible()
+	{
+		return this.visibilita;
+	}
+	
+	public void setVisibilita(Boolean visibilita)
+	{
+		this.visibilita = visibilita;
+	}
+	
 
 	public String getTitolo() {
 		return titolo;
@@ -87,11 +108,11 @@ public class Annuncio
 		return tipologia;
 	}
 	
-	public String[] getColore() {
+	public String getColore() {
 		return colore;
 	}
 	
-	public void setColore(String[] colore)
+	public void setColore(String colore)
 	{
 		this.colore = colore;
 	}
@@ -190,11 +211,6 @@ public class Annuncio
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-    
-    
 
-    
-    
+	
 }

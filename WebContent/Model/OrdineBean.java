@@ -1,41 +1,52 @@
 package Model;
 
-public class Ordine 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class OrdineBean implements Serializable
 {
+	// numero seriale
+	private static final long serialVersionUID = 1L;
+	
 	// variabili d'istanza
-	private int codice_ordine;
+	private String codice_ordine;
     private String indirizzo_origine;
     private String indirizzo_destinazione;
+    private List<AnnuncioBean> prodotti;
     private double costo_prodotti;
     private double costo_spedizione;
     private double totale;
     private String tempo_spedizione;
-    private String email;
+    private String codice_fattura;
+    private String email_compratore;
 	
     // costruttore vuoto
-    public Ordine() {}
+    public OrdineBean() {}
 
     // costruttore con argomenti
-	public Ordine(int codice_ordine, String indirizzo_origine, String indirizzo_destinazione, double costo_prodotti,
-			double costo_spedizione, double totale, String tempo_spedizione, String email) 
+	public OrdineBean(String codice_ordine, String indirizzo_origine, String indirizzo_destinazione, List<AnnuncioBean> prodotti,double costo_prodotti,
+			double costo_spedizione, double totale, String tempo_spedizione, FatturaBean fattura, UtenteIscrittoBean utenteCompratore) 
 	{
 		this.codice_ordine = codice_ordine;
 		this.indirizzo_origine = indirizzo_origine;
 		this.indirizzo_destinazione = indirizzo_destinazione;
+		this.prodotti = new ArrayList<>(prodotti);
 		this.costo_prodotti = costo_prodotti;
 		this.costo_spedizione = costo_spedizione;
 		this.totale = totale;
 		this.tempo_spedizione = tempo_spedizione;
-		this.email = email;
+		this.codice_fattura = fattura.getCodice_fattura();
+		this.email_compratore = utenteCompratore.getEmail();
 	}
 
 	// getters e setters
 	
-	public int getCodice_ordine() {
+	public String getCodice_ordine() {
 		return codice_ordine;
 	}
 
-	public void setCodice_ordine(int codice_ordine) {
+	public void setCodice_ordine(String codice_ordine) {
 		this.codice_ordine = codice_ordine;
 	}
 
@@ -70,6 +81,16 @@ public class Ordine
 	public void setCosto_spedizione(double costo_spedizione) {
 		this.costo_spedizione = costo_spedizione;
 	}
+	
+	public List<AnnuncioBean> getProdotti() {
+		List<AnnuncioBean> prodotti2 = new ArrayList<>(prodotti);
+		
+		return prodotti2;
+	}
+
+	public void setProdotti(List<AnnuncioBean> prodotti) {
+		this.prodotti = prodotti;
+	}
 
 	public double getTotale() {
 		return totale;
@@ -87,18 +108,22 @@ public class Ordine
 		this.tempo_spedizione = tempo_spedizione;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCodiceFattura() {
+		return codice_fattura;
+	}
+	
+	public void setCodiceFattura(String codice_fattura)
+	{
+		this.codice_fattura = codice_fattura;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getEmail_compratore() {
+		return email_compratore;
+	}
+
+	public void setEmail_compratore(String email_compratore) {
+		this.email_compratore = email_compratore;
 	}
 	
-	
-	
-    
-    
-    
-    
+	 
 }

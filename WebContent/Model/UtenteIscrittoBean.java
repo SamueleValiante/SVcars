@@ -1,7 +1,11 @@
 package Model;
 
-public class UtenteIscritto 
+import java.io.Serializable;
+
+public class UtenteIscrittoBean implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+
 	private String email;
 	private String nome;
 	private String cognome;
@@ -10,19 +14,21 @@ public class UtenteIscritto
 	private String citta;
 	private int cap;
 	private String via;
+	private String codice_carrello;
 	
-	public UtenteIscritto() {}
+	public UtenteIscrittoBean() {}
 	
-	public UtenteIscritto(String email, String nome, String cognome, Tipo_utente tipo_utente, String password, String citta, int cap, String via)
+	public UtenteIscrittoBean(String email, String nome, String cognome, Tipo_utente tipo_utente, String password, String citta, int cap, String via, String codice_carrello)
 	{
 		this.email = email;
-		this.nome = nome.toString();
-		this.cognome = cognome.toString();
+		this.nome = nome;
+		this.cognome = cognome;
 		this.tipo_utente = tipo_utente;
 		this.password = password;
 		this.citta = citta;
 		this.cap = cap;
-		this.via = via.toString();
+		this.via = via;
+		this.codice_carrello = codice_carrello;
 	}
 
 	public String getEmail() {
@@ -53,8 +59,8 @@ public class UtenteIscritto
 		return tipo_utente;
 	}
 
-	public void setTipo_utente(Tipo_utente tipo_utente) {
-		this.tipo_utente = tipo_utente;
+	public void setTipo_utente(String string) {
+		this.tipo_utente = Tipo_utente.valueOf(string);
 	}
 
 	public String getPassword() {
@@ -88,13 +94,16 @@ public class UtenteIscritto
 	public void setVia(String via) {
 		this.via = via;
 	}
+
+	public String getCodice_carrello() {
+		return codice_carrello;
+	}
+
+	public void setCodice_carrello(String codice_carrello) {
+		this.codice_carrello = codice_carrello;
+	}
 	
-	// quando invocata legge tutta la tabella del db UtenteIscritto e per ogni riga ne crea un oggetto che salva in un array di oggetti che restituirà
 	
-	/*public UtenteIscritto[] getUtentiIscritti() 
-	{
-		
-	}*/
 	
 	
 	
