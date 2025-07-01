@@ -24,6 +24,8 @@ public class AnnuncioBean implements Serializable
     private int n_porte;
     private String citta;
     private String email;
+    
+    // prova
 	
     // costruttore vuoto
     public AnnuncioBean() {}
