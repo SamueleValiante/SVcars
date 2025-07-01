@@ -11,7 +11,10 @@
 	
 	<body>
 		<h1>Benvenuto in SVcars</h1><br>
-		<p> Sito web in costruzione </p>
+		<p> Sito web in costruzione
+			Seguiranno a breve aggiornamenti.
+		</p>
+		
 	</body>
 
 </html>
