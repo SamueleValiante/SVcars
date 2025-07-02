@@ -32,10 +32,11 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				+ "costo_prodotti, "
 				+ "costo_spedizione, "
 				+ "totale, "
+				+ "data_acquisto, "
 				+ "tempo_spedizione, "
 				+ "codice_fattura, "
 				+ "email) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 
 		try {
@@ -47,9 +48,10 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 			preparedStatement.setDouble(4, ordine.getCosto_prodotti());
 			preparedStatement.setDouble(5, ordine.getCosto_spedizione());
 			preparedStatement.setDouble(6, ordine.getTotale());
-			preparedStatement.setString(7, ordine.getTempo_spedizione());
-			preparedStatement.setString(8, ordine.getCodiceFattura());
-			preparedStatement.setString(9, ordine.getEmail_compratore());
+			preparedStatement.setDate(7, ordine.getDataAcquisto());
+			preparedStatement.setString(8, ordine.getTempo_spedizione());
+			preparedStatement.setString(9, ordine.getCodiceFattura());
+			preparedStatement.setString(10, ordine.getEmail_compratore());
 			
 			preparedStatement2 = connection.prepareStatement(insertSQL2);
 			
@@ -101,6 +103,7 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				bean.setProdotti(getAnnunciOrdine(codice_ordine));
 				bean.setCosto_prodotti(rs.getDouble("costo_prodotti"));
 				bean.setTotale(rs.getDouble("totale"));
+				bean.setDataAcquisto(rs.getDate("data_acquisto"));
 				bean.setTempo_spedizione(rs.getString("tempo_spedizione"));
 				bean.setCodiceFattura(rs.getString("codice_fattura"));
 				bean.setEmail_compratore(rs.getString("email"));     
@@ -177,6 +180,7 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				bean.setProdotti(getAnnunciOrdine(rs.getString("codice_ordine")));
 				bean.setCosto_prodotti(rs.getDouble("costo_prodotti"));
 				bean.setTotale(rs.getDouble("totale"));
+				bean.setDataAcquisto(rs.getDate("data_acquisto"));
 				bean.setTempo_spedizione(rs.getString("tempo_spedizione"));
 				bean.setCodiceFattura(rs.getString("codice_fattura"));
 				bean.setEmail_compratore(rs.getString("email_compratore"));

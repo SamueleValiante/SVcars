@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class OrdineBean implements Serializable
     private double costo_prodotti;
     private double costo_spedizione;
     private double totale;
+    private Date dataAcquisto;
     private String tempo_spedizione;
     private String codice_fattura;
     private String email_compratore;
@@ -26,7 +28,7 @@ public class OrdineBean implements Serializable
 
     // costruttore con argomenti
 	public OrdineBean(String codice_ordine, String indirizzo_origine, String indirizzo_destinazione, List<AnnuncioBean> prodotti,double costo_prodotti,
-			double costo_spedizione, double totale, String tempo_spedizione, FatturaBean fattura, UtenteIscrittoBean utenteCompratore) 
+			double costo_spedizione, double totale, Date dataAcquisto, String tempo_spedizione, FatturaBean fattura, UtenteIscrittoBean utenteCompratore) 
 	{
 		this.codice_ordine = codice_ordine;
 		this.indirizzo_origine = indirizzo_origine;
@@ -35,6 +37,7 @@ public class OrdineBean implements Serializable
 		this.costo_prodotti = costo_prodotti;
 		this.costo_spedizione = costo_spedizione;
 		this.totale = totale;
+		this.dataAcquisto = dataAcquisto;
 		this.tempo_spedizione = tempo_spedizione;
 		this.codice_fattura = fattura.getCodice_fattura();
 		this.email_compratore = utenteCompratore.getEmail();
@@ -98,6 +101,15 @@ public class OrdineBean implements Serializable
 
 	public void setTotale(double totale) {
 		this.totale = totale;
+	}
+	
+
+	public Date getDataAcquisto() {
+		return dataAcquisto;
+	}
+
+	public void setDataAcquisto(Date dataAcquisto) {
+		this.dataAcquisto = dataAcquisto;
 	}
 
 	public String getTempo_spedizione() {
