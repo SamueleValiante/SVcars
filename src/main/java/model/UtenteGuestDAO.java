@@ -30,7 +30,7 @@ public class UtenteGuestDAO implements InterfaceDataAccessObject<UtenteGuestBean
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setString(1, utenteGuest.getCodice_utente());
-			preparedStatement.setString(9, utenteGuest.getCodice_carrello());
+			preparedStatement.setString(2, utenteGuest.getCodice_carrello());
 
 			// salvo l'utente nel database
 			preparedStatement.executeUpdate();
@@ -135,7 +135,7 @@ public class UtenteGuestDAO implements InterfaceDataAccessObject<UtenteGuestBean
 			while (rs.next()) {
 				UtenteGuestBean bean = new UtenteGuestBean();
 
-				bean.setCodice_utente(rs.getString("codice_fattura"));
+				bean.setCodice_utente(rs.getString("codice_utente"));
 				bean.setCodice_carrello(rs.getString("codice_carrello"));
 				utentiGuest.add(bean);
 			}

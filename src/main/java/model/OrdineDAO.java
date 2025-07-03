@@ -55,6 +55,8 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 			
 			preparedStatement2 = connection.prepareStatement(insertSQL2);
 			
+			preparedStatement.executeUpdate();
+			
 			// aggiunge ogni annuncio alla tabella Acquista
 			for(AnnuncioBean annuncio : ordine.getProdotti())
 			{
@@ -63,8 +65,6 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				
 				preparedStatement2.executeUpdate();
 			}
-
-			preparedStatement.executeUpdate();
 			
 			// salva la fattura relativa all'ordine all'interno della tabella Fattura
 			FatturaDAO daofattura = new FatturaDAO();
@@ -74,6 +74,8 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
+				if (preparedStatement2 != null)
+				    preparedStatement2.close();
 			} finally {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
@@ -138,8 +140,9 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 
 			
 			// elimina il riferimento all ordine e la fattura ad esso associata
+			String codiceFattura = doRetrieveByKey(codice_ordine).getCodiceFattura();
 			result = preparedStatement.executeUpdate(); 
-			dao.doDelete(doRetrieveByKey(codice_ordine).getCodiceFattura());
+			dao.doDelete(codiceFattura);
 
 		} finally {
 			try {
@@ -183,7 +186,7 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				bean.setDataAcquisto(rs.getDate("data_acquisto"));
 				bean.setTempo_spedizione(rs.getString("tempo_spedizione"));
 				bean.setCodiceFattura(rs.getString("codice_fattura"));
-				bean.setEmail_compratore(rs.getString("email_compratore"));
+				bean.setEmail_compratore(rs.getString("email"));
 				
 				ordini.add(bean);
 			}
@@ -243,32 +246,39 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
 				
 		int result = 0;
 
 		// cancella tutte le tuple che coincidono con il codice ordine
-		String deleteSQL = "DELETE FROM Acquista WHERE codice_ordine = ?";
+		String selectSQL = "SELECT targa FROM Acquista WHERE codice_ordine = ?";
+		String deleteSQL = "DELETE FROM Acquista WHERE codice_ordine = ? AND targa = ?";
 
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
-			preparedStatement = connection.prepareStatement(deleteSQL);
-					
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement2 = connection.prepareStatement(deleteSQL);		
+			
 			preparedStatement.setString(1, codice_ordine);
-				
+			preparedStatement2.setString(1, codice_ordine);
+			
 			ResultSet rs = preparedStatement.executeQuery();
 
 			// ottiene tutte le tuple che coincidono con il codice_ordine
 			while (rs.next()) 
 			{
 				// cancella il riferimento da acquista
-				result = preparedStatement.executeUpdate();	
+				preparedStatement2.setString(2, rs.getString("targa"));
+				result += preparedStatement2.executeUpdate();	
 			}
 
 		} finally {
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
+				if (preparedStatement2 != null)
+				    preparedStatement2.close();
 			} finally {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}

@@ -160,7 +160,7 @@ public class CarrelloDAO implements InterfaceDataAccessObject<CarrelloBean>
 				
 			preparedStatement.setString(1, codice_carrello);
 
-			preparedStatement.executeUpdate();
+			result = preparedStatement.executeUpdate();
 
 		} finally {
 			try {
@@ -217,22 +217,26 @@ public class CarrelloDAO implements InterfaceDataAccessObject<CarrelloBean>
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
 		
 		boolean result = true;
 
 		String deleteSQL = "DELETE FROM Contiene WHERE codice_carrello = ?";
+		String sql = "UPDATE Carrello SET totale = 0 WHERE codice_carrello = ?";
 
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
 			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement2 = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, codice_carrello);
+			preparedStatement2.setString(1, codice_carrello);
 
 			preparedStatement.executeUpdate();
 			
 			// imposta totale carrello a 0
-			doRetrieveByKey(codice_carrello).setTotale(0);
+			preparedStatement2.executeUpdate();
 
 		} 
 		
@@ -247,8 +251,12 @@ public class CarrelloDAO implements InterfaceDataAccessObject<CarrelloBean>
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
+				
 				else
 					result = false;
+			
+				if (preparedStatement2 != null)
+				    preparedStatement2.close();
 			} finally {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}

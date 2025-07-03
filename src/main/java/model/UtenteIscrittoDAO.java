@@ -210,6 +210,8 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 					
 			ResultSet rs1 = preparedStatement.executeQuery();
 
+			OrdineDAO dao = new OrdineDAO();
+			
 			// ottiene tutte le tuple che coincidono con l email
 			while (rs1.next()) 
 			{
@@ -217,9 +219,10 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 				String codice_ordine = rs1.getString("codice_ordine");
 			
 				// cancella ordine
-				OrdineDAO dao = new OrdineDAO();
 				dao.doDelete(codice_ordine);
 			}
+			
+			preparedStatement2.setString(1, email);
 			
 			ResultSet rs2 = preparedStatement2.executeQuery();
 
@@ -230,8 +233,8 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 				String targa = rs2.getString("targa");
 			
 				// cancella annuncio
-				AnnuncioDAO dao = new AnnuncioDAO();
-				dao.doDelete(targa);
+				AnnuncioDAO dao2 = new AnnuncioDAO();
+				dao2.doDelete(targa);
 			}
 			
 			
@@ -240,6 +243,8 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
+				if (preparedStatement2 != null)
+				    preparedStatement2.close();
 			} finally {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
@@ -331,20 +336,41 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 	}
 	
 	// modifica annuncio
-	public void modificaAnnuncio(AnnuncioBean annuncioNuovo, AnnuncioBean annuncioVecchio) throws SQLException
+	public void modificaAnnuncio(AnnuncioBean annuncio) throws SQLException
 	{
-		AnnuncioDAO dao = new AnnuncioDAO();
-		
-		// prima di modificare l'annuncio se ne ottiene il bean dell'originale 
-		
-		// impostiamo la targa del vecchio poichè essa non puo essere modificata
-		annuncioNuovo.setTarga(annuncioVecchio.getTarga());
-		
-		// rendiamo invisibile il vecchio annuncio
-		dao.doDelete(annuncioVecchio.getTarga());
-		
-		// salviamo nel db il nuovo annuncio
-		dao.doSave(annuncioNuovo);
+		Connection connection = null;
+	    PreparedStatement ps = null;
+
+	    String updateSQL = "UPDATE Annuncio SET titolo = ?, descrizione = ?, prezzo = ?, tipologia = ?, colore = ?, " +
+	                       "km = ?, anno = ?, carburante = ?, marca = ?, modello = ?, cilindrata = ?, n_porte = ?, " +
+	                       "citta = ?, email = ?, visibilita = ? WHERE targa = ?";
+
+	    try {
+	        connection = DriverManagerConnectionPool.getConnection(db, username, password);
+	        ps = connection.prepareStatement(updateSQL);
+	        ps.setString(1, annuncio.getTitolo());
+	        ps.setString(2, annuncio.getDescrizione());
+	        ps.setDouble(3, annuncio.getPrezzo());
+	        ps.setString(4, annuncio.getTipologia());
+	        ps.setString(5, annuncio.getColore());
+	        ps.setInt(6, annuncio.getKm());
+	        ps.setInt(7, annuncio.getAnno());
+	        ps.setString(8, annuncio.getCarburante());
+	        ps.setString(9, annuncio.getMarca());
+	        ps.setString(10, annuncio.getModello());
+	        ps.setInt(11, annuncio.getCilindrata());
+	        ps.setInt(12, annuncio.getN_porte());
+	        ps.setString(13, annuncio.getCitta());
+	        ps.setString(14, annuncio.getEmail());
+	        ps.setBoolean(15, annuncio.isVisible());
+	        ps.setString(16, annuncio.getTarga());
+
+	        ps.executeUpdate();
+	        
+	    } finally {
+	        if (ps != null) ps.close();
+	        DriverManagerConnectionPool.releaseConnection(connection);
+	    }
 	}
 	
 	// aggiungi annuncio a carrello
@@ -413,14 +439,15 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 		PreparedStatement preparedStatement3 = null;
 
 		// modifica totale nel carrello
-		String modificaSQL = "UPDATE Carrello SET totale = ? WHERE codice_carrello = " + codice_carrello;
+		String modificaSQL = "UPDATE Carrello SET totale = ? WHERE codice_carrello = ?";
 
 		try {
 			connection3 = DriverManagerConnectionPool.getConnection(db, username, password);
 
 			preparedStatement3 = connection3.prepareStatement(modificaSQL);
 					
-			preparedStatement3.setDouble(1, carrello.getTotale() - annuncio.getPrezzo());
+			preparedStatement3.setDouble(1, carrello.getTotale() + annuncio.getPrezzo());
+			preparedStatement3.setString(2, codice_carrello);
 					
 			// aggiorna totale carrello
 			preparedStatement3.executeUpdate();
@@ -451,7 +478,7 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 			preparedStatement = connection.prepareStatement(deleteSQL);
 				
 			preparedStatement.setString(1, codice_carrello);
-			preparedStatement.setString(1, annuncio.getTarga());
+			preparedStatement.setString(2, annuncio.getTarga());
 
 			preparedStatement.executeUpdate();
 
@@ -481,7 +508,7 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 		PreparedStatement preparedStatement2 = null;
 
 		// modifica totale nel carrello
-		String modificaSQL = "UPDATE Carrello SET totale = ? WHERE codice_carrello = " + codice_carrello;
+		String modificaSQL = "UPDATE Carrello SET totale = ? WHERE codice_carrello = ?";
 
 		try {
 			connection2 = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -489,6 +516,7 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 			preparedStatement2 = connection2.prepareStatement(modificaSQL);
 			
 			preparedStatement2.setDouble(1, carrello.getTotale() - annuncio.getPrezzo());
+			preparedStatement2.setString(2, codice_carrello);
 			
 			// aggiorna totale carrello
 			preparedStatement2.executeUpdate();
@@ -508,7 +536,7 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 	// verifica se l'utente è amministratore
 	public boolean isAmministratore(String email) throws SQLException
 	{
-		return doRetrieveByKey(email).getTipo_utente() == Tipo_utente.Amministratore;
+		return doRetrieveByKey(email).getTipo_utente().equals(Tipo_utente.Amministratore);
 	}
 	
 

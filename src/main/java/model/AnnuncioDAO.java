@@ -26,7 +26,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 
 		// salva annuncio nell apposita tabella
 		String insertSQL = "INSERT INTO " + AnnuncioDAO.TABLE_NAME
-				+ " (targa, titolo, prezzo, tipologia, colore, km, anno, carburante, marca, modello, cilindrata, n_porte, citta, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (targa, visibilita, titolo, descrizione, prezzo, tipologia, colore, km, anno, carburante, marca, modello, cilindrata, n_porte, citta, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		
 		try {
@@ -34,19 +34,21 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 			preparedStatement = connection.prepareStatement(insertSQL);
 			
 			preparedStatement.setString(1, annuncio.getTarga());
-			preparedStatement.setString(2, annuncio.getTitolo());
-			preparedStatement.setDouble(3, annuncio.getPrezzo());
-			preparedStatement.setString(4, annuncio.getTipologia());
-			preparedStatement.setString(5, annuncio.getColore());
-			preparedStatement.setInt(6, annuncio.getKm());
-			preparedStatement.setInt(7, annuncio.getAnno());
-			preparedStatement.setString(8, annuncio.getCarburante());
-			preparedStatement.setString(8, annuncio.getMarca());
-			preparedStatement.setString(9, annuncio.getModello());
-			preparedStatement.setInt(10, annuncio.getCilindrata());
-			preparedStatement.setInt(11, annuncio.getN_porte());
-			preparedStatement.setString(12, annuncio.getCitta());
-			preparedStatement.setString(13, annuncio.getEmail());
+			preparedStatement.setBoolean(2, annuncio.isVisible());			
+			preparedStatement.setString(3, annuncio.getTitolo());
+			preparedStatement.setString(4, annuncio.getDescrizione());
+			preparedStatement.setDouble(5, annuncio.getPrezzo());
+			preparedStatement.setString(6, annuncio.getTipologia());
+			preparedStatement.setString(7, annuncio.getColore());
+			preparedStatement.setInt(8, annuncio.getKm());
+			preparedStatement.setInt(9, annuncio.getAnno());
+			preparedStatement.setString(10, annuncio.getCarburante());
+			preparedStatement.setString(11, annuncio.getMarca());
+			preparedStatement.setString(12, annuncio.getModello());
+			preparedStatement.setInt(13, annuncio.getCilindrata());
+			preparedStatement.setInt(14, annuncio.getN_porte());
+			preparedStatement.setString(15, annuncio.getCitta());
+			preparedStatement.setString(16, annuncio.getEmail());
 
 			preparedStatement.executeUpdate();
 
@@ -83,7 +85,9 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 
 			while (rs.next()) {
 				bean.setTarga(rs.getString("targa"));
+				bean.setVisibilita(rs.getBoolean("visibilita"));
 				bean.setTitolo(rs.getString("titolo"));
+				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setPrezzo(rs.getDouble("prezzo"));
 				bean.setTipologia(rs.getString("tipologia"));
 				bean.setColore(rs.getString("colore"));
@@ -118,12 +122,14 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 		int result = 0;
 
 		// modifica la visibilità dell annuncio
-		String modificaSQL = "UPDATE Annunci SET visibilita = false WHERE targa = " + targa;
+		String modificaSQL = "UPDATE Annuncio SET visibilita = false WHERE targa = ?";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
 
 			preparedStatement = connection.prepareStatement(modificaSQL);
+			
+			preparedStatement.setString(1, targa);
 			
 			// rende non visibile l'annuncio e ne cancella i riferimenti da tutti i carrelli che lo contengono
 			result = preparedStatement.executeUpdate() + cancellaRiferimenti(targa);
@@ -162,7 +168,9 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 				AnnuncioBean bean = new AnnuncioBean();
 
 				bean.setTarga(rs.getString("targa"));
+				bean.setVisibilita(rs.getBoolean("visibilita"));
 				bean.setTitolo(rs.getString("titolo"));
+				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setPrezzo(rs.getDouble("prezzo"));
 				bean.setTipologia(rs.getString("tipologia"));
 				bean.setColore(rs.getString("colore"));
@@ -230,7 +238,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 				PreparedStatement preparedStatement3 = null;
 
 				// modifica totale nel carrello
-				String modificaSQL = "UPDATE Carrello SET totale = ? WHERE codice_carrello = " + codice_carrello;
+				String modificaSQL = "UPDATE Carrello SET totale = ? WHERE codice_carrello = ?";
 
 				try {
 					connection2 = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -238,6 +246,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 					preparedStatement3 = connection2.prepareStatement(modificaSQL);
 					
 					preparedStatement3.setDouble(1, carrello.getTotale() - doRetrieveByKey(targa).getPrezzo());
+					preparedStatement3.setString(2, codice_carrello);
 					
 					// aggiorna totale carrello
 					preparedStatement3.executeUpdate();
@@ -263,27 +272,15 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 		
 		return result;
 	}
-	
-	// ricerca un annuncio
-	public List<AnnuncioBean> ricercaAnnuncio(AnnuncioBean annuncio) throws SQLException
-	{
-		List<AnnuncioBean> annunci = new ArrayList<>();
-		List<AnnuncioBean> annuncidb = new ArrayList<>();
-		
-		// ottengo tutti gli annunci dal db
-		AnnuncioDAO dao = new AnnuncioDAO();
-		annuncidb = dao.doRetrieveAll("titolo");
-		
-		
-		
-		return annunci;
-	}
+
 		
 	// riprende annuncio precedentemente cancellato
 	public void restoreAnnuncio(String targa) throws SQLException
 	{
-		// imposta visibile l'annuncio
-		doRetrieveByKey(targa).setVisibilita(true);
+		Connection conn = DriverManagerConnectionPool.getConnection(db, username, password);
+	    PreparedStatement ps = conn.prepareStatement("UPDATE Annuncio SET visibilita = true WHERE targa = ?");
+	    ps.setString(1, targa);
+	    ps.executeUpdate();
 	}
 	
 	

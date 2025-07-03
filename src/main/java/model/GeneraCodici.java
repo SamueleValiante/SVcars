@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalTime;
+import java.util.UUID;
 
 public class GeneraCodici 
 {
@@ -9,7 +10,7 @@ public class GeneraCodici
 	{
 		String codice = new String();
 		
-		codice = "codice_utente"  + LocalTime.now(); // da rivedere
+		codice = "codice_utente"  + UUID.randomUUID();
 		
 		return codice;
 	}
@@ -19,7 +20,7 @@ public class GeneraCodici
 	{
 		String codice = new String();
 		
-		codice = "codice_carrello" + utenteiscritto.getEmail() + LocalTime.now();
+		codice = "codice_carrello" + utenteiscritto.getEmail() + UUID.randomUUID();
 		
 		return codice;
 	}
@@ -29,7 +30,7 @@ public class GeneraCodici
 	{
 		String codice = new String();
 		
-		codice = "codice_carrello" + codice_utente_guest + LocalTime.now();
+		codice = "codice_carrello" + codice_utente_guest;
 		
 		return codice;
 	}
