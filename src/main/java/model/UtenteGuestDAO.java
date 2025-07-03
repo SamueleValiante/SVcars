@@ -152,5 +152,42 @@ public class UtenteGuestDAO implements InterfaceDataAccessObject<UtenteGuestBean
 	}
 	
 	// passa a utente iscritto
+	public void daGuestAiscritto(String codice_utente, UtenteIscrittoBean utente) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
+		
+		// cancella record utente guest da db
+		String deleteSQL = "DELETE FROM " + UtenteGuestDAO.TABLE_NAME + " WHERE codice_utente = ?";
+		
+		// associa il carrello all'utente iscritto
+		String updateSQL = "UPDATE UtenteIscritto SET codice_carrello = ? WHERE email = ?";
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection(db, username, password);
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement2 = connection.prepareStatement(updateSQL);
+			
+			// Ottiene il codice carrello del guest prima di eliminarlo
+			String codice_carrello = doRetrieveByKey(codice_utente).getCodice_carrello();
+			
+			preparedStatement.setString(1, codice_utente);
+			
+			preparedStatement2.setString(1, codice_carrello);
+			preparedStatement2.setString(2, utente.getEmail());
+			
+			preparedStatement2.executeUpdate();
+			preparedStatement.executeUpdate();
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 }
 

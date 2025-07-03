@@ -46,9 +46,7 @@ public class CarrelloBean implements Serializable
 	}
 
 	public List<AnnuncioBean> getProdotti() {
-		List<AnnuncioBean> prodotti2 = new ArrayList<>(prodotti);
-		
-		return prodotti2;
+		return prodotti == null ? new ArrayList<>() : new ArrayList<>(prodotti);
 	}
 
 	public void setProdotti(List<AnnuncioBean> prodotti) {

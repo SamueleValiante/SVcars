@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  height: 170px;
+  background-color: #074035;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;  
+}
+
+form {
+  padding: 25px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+
+p#logo {
+	display: flex;
+	padding: 10px 120px 0px 0px;
+	font-size: 23px; 
+	font-weight: bold;
+	font-style: italic;
+  	justify-content: center;
+  	align-items: center;
+	font-family: serif;
+}
+
+img#menu {
+  padding: 0px 20px;
+  width: 60px;
+  height: auto;
+}
+
+input[name="barraRicerca"] {
+  width: 550px;            /* larghezza */
+  padding: 10px 15px;      /* spazi interni */
+  border-radius: 35px;     /* angoli arrotondati */
+  border: 1px solid #fff;  /* bordo grigio */
+  font-size: 13px;         /* grandezza testo */
+  color: #333;             /* colore testo */
+  background-color: #fff;  /* sfondo */
+  transition: all 0.3s ease;
+  outline: none;           /* rimuove bordo blu browser */
+}
+
+input[name="barraRicerca"]:focus {
+  border-color: #4CAF50; /* verde più scuro al focus */
+  box-shadow: 0 0 5px #4CAF50;
+}

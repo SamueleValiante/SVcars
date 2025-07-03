@@ -1,5 +1,6 @@
 package model;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -175,7 +176,8 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 	public static String sha256(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hashedBytes = md.digest(input.getBytes());
+            byte[] hashedBytes = md.digest(input.getBytes(StandardCharsets.UTF_8));
+
 
             StringBuilder sb = new StringBuilder();
             for (byte b : hashedBytes) {
