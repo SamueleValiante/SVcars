@@ -7,14 +7,10 @@
 
 header {
   height: 170px;
-  background-color: #074035;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 30px;  
+  background-color: #074035; 
 }
 
 form {
-  padding: 25px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,19 +18,34 @@ form {
 }
 
 
+
+
 p#logo {
 	display: flex;
-	padding: 10px 120px 0px 0px;
+	padding: 15px 120px 15px 15px;
 	font-size: 23px; 
 	font-weight: bold;
 	font-style: italic;
   	justify-content: center;
-  	align-items: center;
 	font-family: serif;
 }
 
+img#ricerca
+{
+	padding: 0px 15px;
+}
+
+img#carrello
+{
+  display: flex;
+  align-items: left;
+  margin-bottom: 40px;
+  width: 60px;
+  height: auto;
+}
+
 img#menu {
-  padding: 0px 20px;
+  padding: 0px 0px;
   width: 60px;
   height: auto;
 }
@@ -48,7 +59,7 @@ input[name="barraRicerca"] {
   color: #333;             /* colore testo */
   background-color: #fff;  /* sfondo */
   transition: all 0.3s ease;
-  outline: none;           /* rimuove bordo blu browser */
+  outline: none;
 }
 
 input[name="barraRicerca"]:focus {

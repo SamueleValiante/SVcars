@@ -19,7 +19,6 @@ public class TipoUtenteFilter implements Filter
 	@Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
     {
-
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession(false);
         String tipoUtente = "guest";
@@ -30,9 +29,10 @@ public class TipoUtenteFilter implements Filter
             if (utente instanceof UtenteIscrittoBean utente2) {
                 tipoUtente = utente2.getTipo_utente().toString(); // es. "Iscritto" o "Amministratore"
             }
+            	
         }
 
-        // Salvo nella request (non session) per essere letto nella JSP
+        // Salvo nella request per essere letto nella JSP
         req.setAttribute("tipoUtente", tipoUtente);
 
         // Continua con la richiesta

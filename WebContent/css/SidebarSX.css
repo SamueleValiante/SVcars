@@ -1,0 +1,38 @@
+section.filtri
+{
+	width: 18%;
+	height: 1000px;
+	background-color: #145946;
+	display: flex;
+	align-items: flex-start;
+  	flex-direction: column;
+}
+
+form.filtri {
+  display: flex;
+  flex-direction: column;
+}
+
+label.filtroLabel {
+  font-weight: bold;
+  display:flex;
+  font-family: inherit;
+  margin-bottom: 5px;
+  margin-top: 15px;
+  font-size: 18px;
+  width: 100%;
+  max-width: 250px;
+}
+
+select.selectF {
+	font-size: 14px;
+	width: 100%;
+  	max-width: 250px;
+  	height: 30px;
+}
+
+div.filtro {
+	margin-bottom: 30px;
+	margin-left: 40px;
+}
+

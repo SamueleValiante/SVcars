@@ -11,15 +11,21 @@
 	</head>
 	
 	<body>
-		<% if(request.getAttribute("tipoUtente").equals("Amministratore")) {%>
+		<% String tipoUtente = request.getAttribute("tipoUtente").toString(); %>
+	
+		<% if(tipoUtente.equals("Amministratore")) {%>
 			<jsp:include page="jsp/HeaderAmministratore.jsp"></jsp:include>
 			
-		<%} else if(request.getAttribute("tipoUtente").equals("Utente_normale")) {%>
+		<%} else if(tipoUtente.equals("Utente_normale")) {%>
 			<jsp:include page="jsp/HeaderRegistrato.jsp"></jsp:include>
 			
 		<% }else {%>
 			<jsp:include page="jsp/HeaderGuest.jsp"></jsp:include>
 		<% } %>
+		
+		<jsp:include page="jsp/SidebarSX.jsp"></jsp:include>
+		
+		<jsp:include page="jsp/Footer.jsp"></jsp:include>
 	</body>
 
 </html>
