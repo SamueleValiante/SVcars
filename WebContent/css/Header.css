@@ -6,8 +6,9 @@
 }
 
 header {
-  height: 170px;
+  height: 150px;
   background-color: #074035; 
+  padding: 15px 15px 15px 15px;
 }
 
 form {
@@ -17,12 +18,9 @@ form {
   flex-grow: 1;
 }
 
-
-
-
 p#logo {
 	display: flex;
-	padding: 15px 120px 15px 15px;
+	padding: 15px 20px 15px 100px;
 	font-size: 23px; 
 	font-weight: bold;
 	font-style: italic;
@@ -32,32 +30,34 @@ p#logo {
 
 img#ricerca
 {
-	padding: 0px 15px;
+	padding: 15px 15px;
 }
 
 img#carrello
 {
-  display: flex;
+  display: inline;
   align-items: left;
-  margin-bottom: 40px;
+  margin-top: 20px;
   width: 60px;
   height: auto;
 }
 
 img#menu {
-  padding: 0px 0px;
+  display: flex;
+  padding: 20px 20px;
   width: 60px;
   height: auto;
 }
 
 input[name="barraRicerca"] {
-  width: 550px;            /* larghezza */
+  width: 600px;            /* larghezza */
   padding: 10px 15px;      /* spazi interni */
   border-radius: 35px;     /* angoli arrotondati */
   border: 1px solid #fff;  /* bordo grigio */
   font-size: 13px;         /* grandezza testo */
   color: #333;             /* colore testo */
-  background-color: #fff;  /* sfondo */
+  background-color: #fff;  
+  margin-left: 150px;
   transition: all 0.3s ease;
   outline: none;
 }

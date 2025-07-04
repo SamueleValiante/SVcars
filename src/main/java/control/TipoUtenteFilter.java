@@ -7,13 +7,11 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import model.UtenteIscrittoBean;
 
 // filtro che ottiene l'utente dalla sessione per poi determinare di quale si tratta
-@WebFilter("/*")
 public class TipoUtenteFilter implements Filter 
 {
 	@Override

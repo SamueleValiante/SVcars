@@ -23,7 +23,7 @@
 			<jsp:include page="jsp/HeaderGuest.jsp"></jsp:include>
 		<% } %>
 		
-		<jsp:include page="jsp/SidebarSX.jsp"></jsp:include>
+		<jsp:include page="jsp/PannelloSidebar.jsp"></jsp:include>
 		
 		<jsp:include page="jsp/Footer.jsp"></jsp:include>
 	</body>

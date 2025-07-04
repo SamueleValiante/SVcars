@@ -9,10 +9,11 @@
 
 	<body>
 		<header>
-			<p id="logo"> SVcars </p>
 			<img id="menu" src="images/opzioni.jpg" width=40 height=40 alt="Menu" align="right">
 			
 			<img id="carrello" src="images/carrello.png" width=50 height=50 alt="Carrello" align="left">
+		
+			<p id="logo"> SVcars </p>
 			
 			<form action="control/EffettuaRicerca">
 				

@@ -4,10 +4,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="css/SidebarSX.css">
+		<link rel="stylesheet" href="css/PannelloSidebar.css">
 	</head>
 	
-	<body>
+	<body class="sidebar">
 		<section class="filtri">
 			<form class="filtri" action="control/EffettuaRicerca">
 				
