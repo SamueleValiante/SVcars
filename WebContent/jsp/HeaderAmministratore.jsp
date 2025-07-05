@@ -9,11 +9,35 @@
 
 	<body>
 		<header>
-			<p id="logo"> SVcars </p>
-			<form action="control/EffettuaRicerca">
-				<input type="text" name="barraRicerca" value="">
-				<img id="menu" src="images/opzioni.jpg" width=40 height=40 alt="Menu" align="right">
+			<form id="carrello" action="/SVcars/VisualizzaAnnunciCarrelloServlet" method="get">
+				<input id="carrelloIn" type="image" src="images/carrello.png" width=50 height=50 alt="Carrello" align="left"/>
 			</form>
+			 
+			<form id="barraForm" action="/SVcars/EffettuaRicercaServlet" method="get">
+				<p id="logo"> SVcars </p>
+				<div id="barraecerca">
+  					<input type="text" name="barraRicerca" id="barraRicercaInput" placeholder="Cerca...">
+  					<input id="cerca" type="image" src="images/cerca.png" width=40 height=30 alt="Invia" />
+				</div>
+			</form>
+			
+			<form id="menu" action="">
+				<div id="menu-container">
+					<input id="menuIn" type="image" src="images/opzioni.jpg" width="40" height="40" alt="Opzioni" />
+				
+					<ul id="dropdown-menu" class="hidden">
+				  		<li><a href="/SVcars/creaAnnuncio.jsp">Crea annuncio</a></li>
+				    	<li><a href="/SVcars/ordini.jsp">I miei ordini</a></li>
+				    	<li><a href="/SVcars/mieiAnnunci.jsp">I miei annunci</a></li>
+				    	<li><a href="/SVcars/gestisciAnnunci.jsp">Gestisci annunci</a></li>
+				    	<li><a href="/SVcars/gestisciOrdini.jsp">Gestisci ordini</a></li>
+				    	<li><a href="/SVcars/logout">Logout</a></li>
+					</ul>
+				</div>
+			</form>
+			
+			<script src="scripts/menuTendina.js" defer></script>
+		
 		</header>
 	</body>
 

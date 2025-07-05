@@ -9,8 +9,8 @@
 
 	<body>
 		<header>
-			<form id="carrello" action="/SVcars/VisualizzaAnnunciCarrelloServlet" method="get">
-				<input id="carrelloIn" type="image" src="images/carrello.png" width=50 height=50 alt="Carrello" align="left"/>
+			<form id="carrello" action="index.jsp" method="get">
+				<input id="carrelloIn" type="image" src="images/home.png" width=50 height=50 alt="Carrello" align="left"/>
 			</form>
 			
 			<form id="barraForm" action="/SVcars/EffettuaRicercaServlet" method="get">
@@ -28,6 +28,7 @@
 					<ul id="dropdown-menu" class="hidden">
 				  		<li><a href="/SVcars/login.jsp">Login</a></li>
 				    	<li><a href="/SVcars/registrazione.jsp">Registrazione</a></li>
+			
 					</ul>
 				</div>
 			</form>

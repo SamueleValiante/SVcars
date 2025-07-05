@@ -8,8 +8,18 @@
 	</head>
 	
 	<body class="sidebar">
+	
 		<section class="filtri">
-			<form class="filtri" action="control/EffettuaRicerca">
+			<form class="filtri" id="filtriForm" action="/SVcars/EffettuaRicercaServlet" method="get">
+				
+				<div id="labelMain">
+					<h2>Ricerca avanzata</h2>
+				</div>
+				
+				<div class="filtro">
+					<label class="filtroLabel" for="barraRicerca">Cerca titolo:</label>
+					<input type="text" name="barraRicerca" id="barraRicercaSidebar" placeholder="Cerca...">
+				</div>
 				
 				<div class="filtro">
 					<label class="filtroLabel" for="marcaAuto">Seleziona una marca:</label>
@@ -22,9 +32,8 @@
 				  		<option value="mercedes">Mercedes</option>
 				  		<option value="peugeot">Peugeot</option>
 				  		<option value="renault">Renault</option>
-				  		<option value="tesla">Tesla</option>
-				 		 <option value="toyota">Toyota</option>
-				 		 <option value="volkswagen">Volkswagen</option>
+				 		<option value="toyota">Toyota</option>
+				 		<option value="volkswagen">Volkswagen</option>
 					</select>
 				</div>
 				
@@ -47,7 +56,7 @@
 				
 				<!-- Selezione prezzo -->
 				<div class="filtro">
-				  <label class="filtroLabel" for="prezzoMin">Prezzo minimo (€):</label>
+				  <label class="filtroLabel" for="prezzoMin">Prezzo min(€):</label>
 				  <select name="prezzoMin" class="selectF">
 				  	<option value="" selected>-- Seleziona --</option>
 				  	<option value=0>0</option>
@@ -73,7 +82,7 @@
 				  	<option value=100000>100000</option>
 				  </select>
 				
-				  <label class="filtroLabel" for="prezzoMax">Prezzo massimo (€):</label>
+				  <label class="filtroLabel" for="prezzoMax">Prezzo max(€):</label>
 				  <select name="prezzoMax" class="selectF">
 				  	<option value="" selected>-- Seleziona --</option>
 				  	<option value=500>500</option>
@@ -104,7 +113,7 @@
 				
 				<!-- Selezione km -->
 				<div class="filtro">
-				  <label class="filtroLabel" for="KmMin">Chilometri minimi (Km):</label>
+				  <label class="filtroLabel" for="KmMin">Chilometri min(Km):</label>
 				  <select name="KmMin" class="selectF">
 				  	<option value="" selected>-- Seleziona --</option>
 				  	<option value=10000>10000</option>
@@ -120,7 +129,7 @@
 				  	<option value=400000>400000</option>
 				  </select>
 				
-				  <label class="filtroLabel" for="KmMax">Chilometri massimi (Km):</label>
+				  <label class="filtroLabel" for="KmMax">Chilometri max(Km):</label>
 				  <select name="KmMax" class="selectF"">
 				    <option value="" selected>-- Seleziona --</option>
 				    <option value=10000>10000</option>
@@ -209,9 +218,12 @@
 				  </select>
 				</div>
 				
-				
+				<div id="submitDiv">
+					<input id="submitButton" type="submit" value="Cerca">
+				</div>
 				
 			</form>
 		</section>
+		<script src="scripts/validazioneForm.js"></script>
 	</body>
 </html>

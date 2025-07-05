@@ -9,8 +9,8 @@
 
 	<body>
 		<header>
-			<form id="carrello" action="/SVcars/VisualizzaAnnunciCarrelloServlet" method="get">
-				<input id="carrelloIn" type="image" src="images/carrello.png" width=50 height=50 alt="Carrello" align="left"/>
+			<form id="carrello" action="index.jsp" method="get">
+				<input id="carrelloIn" type="image" src="images/home.png" width=50 height=50 alt="Carrello" align="left"/>
 			</form>
 			
 			<form id="barraForm" action="/SVcars/EffettuaRicercaServlet" method="get">
@@ -26,8 +26,10 @@
 					<input id="menuIn" type="image" src="images/opzioni.jpg" width="40" height="40" alt="Opzioni" />
 				
 					<ul id="dropdown-menu" class="hidden">
-				  		<li><a href="/SVcars/login.jsp">Login</a></li>
-				    	<li><a href="/SVcars/registrazione.jsp">Registrazione</a></li>
+				  		<li><a href="/SVcars/creaAnnuncio.jsp">Crea annuncio</a></li>
+				    	<li><a href="/SVcars/ordini.jsp">I miei ordini</a></li>
+				    	<li><a href="/SVcars/mieiAnnunci.jsp">I miei annunci</a></li>
+				    	<li><a href="/SVcars/logout">Logout</a></li>
 					</ul>
 				</div>
 			</form>
@@ -35,6 +37,7 @@
 			<script src="scripts/menuTendina.js" defer></script>
 		
 		</header>
+		<script src="scripts/validazioneBarra.js"></script>
 	</body>
 
 </html>

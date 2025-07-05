@@ -7,12 +7,19 @@
 
 header {
   height: 150px;
+  display: flex;
   background-color: #074035; 
   padding: 15px 15px 15px 15px;
 }
 
-form {
-  display: flex;
+div#barraecerca
+{
+	display: flex;
+	height: 40px;
+}
+
+form#barraForm {
+  display: table-column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
@@ -20,7 +27,7 @@ form {
 
 p#logo {
 	display: flex;
-	padding: 15px 20px 15px 100px;
+	padding: 15px 10px 15px 100px;
 	font-size: 23px; 
 	font-weight: bold;
 	font-style: italic;
@@ -28,23 +35,30 @@ p#logo {
 	font-family: serif;
 }
 
-img#ricerca
+form#menu
 {
-	padding: 15px 15px;
+	margin-bottom: 20px;
+	margin-top: 0px;
 }
 
-img#carrello
-{
-  display: inline;
-  align-items: left;
-  margin-top: 20px;
+input#menuIn {
+  display: inline-block;
+  padding: 20px 20px;
+  align-items: right;
   width: 60px;
   height: auto;
 }
 
-img#menu {
-  display: flex;
-  padding: 20px 20px;
+input#cerca
+{
+	padding: 15px 15px;
+}
+
+input#carrelloIn
+{
+  display: inline;
+  align-items: left;
+  margin-top: 20px;
   width: 60px;
   height: auto;
 }
@@ -57,8 +71,7 @@ input[name="barraRicerca"] {
   font-size: 13px;         /* grandezza testo */
   color: #333;             /* colore testo */
   background-color: #fff;  
-  margin-left: 150px;
-  transition: all 0.3s ease;
+  margin-left: 600px;
   outline: none;
 }
 
@@ -66,3 +79,43 @@ input[name="barraRicerca"]:focus {
   border-color: #4CAF50; /* verde più scuro al focus */
   box-shadow: 0 0 5px #4CAF50;
 }
+
+#menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+#dropdown-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: #145946;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+  z-index: 9999;
+  display: none; /* ✅ inizialmente nascosto */
+}
+
+#dropdown-menu li {
+  border-bottom: 1px solid #eee;
+}
+
+#dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+#dropdown-menu li a:hover {
+  background-color: black;
+}
+
+

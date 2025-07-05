@@ -19,7 +19,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 
 	// funzione che salva un nuovo annuncio creato nel database
 	@Override
-	public synchronized void doSave(AnnuncioBean annuncio) throws SQLException {
+	public synchronized void doSave(AnnuncioBean annuncio) throws SQLException{
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -198,7 +198,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 	}
 	
 	// cancella riferimenti all'annuncio
-	public int cancellaRiferimenti(String targa) throws SQLException 
+	public int cancellaRiferimenti(String targa) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

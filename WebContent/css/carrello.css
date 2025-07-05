@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+div.pannelloCarrello {   
+    height: 1000px;
+	flex: 1;
+    padding: 20px;
+	background-color: #B0D9D1;
+	align-items: center;
+}
+
+.pannelloCarrello h1{
+	text-align: center;
+	margin-top: 40px;
+}

@@ -33,6 +33,8 @@ public class DriverManagerConnectionPool
 		String ip = "localhost";
 		String port = "3306";
 		
+		
+		
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db, username, password);
 		return newConnection;
 	}
