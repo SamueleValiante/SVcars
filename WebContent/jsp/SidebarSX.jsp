@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="css/PannelloSidebar.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/PannelloSidebar.css">
 	</head>
 	
 	<body class="sidebar">
@@ -224,6 +224,6 @@
 				
 			</form>
 		</section>
-		<script src="scripts/validazioneForm.js"></script>
+		<script src="${pageContext.request.contextPath}/scripts/validazioneForm.js"></script>
 	</body>
 </html>

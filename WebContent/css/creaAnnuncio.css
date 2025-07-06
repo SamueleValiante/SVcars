@@ -1,0 +1,101 @@
+
+
+body {
+  background: #B0D9D1;
+  color: #333;
+  line-height: 1.6;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#quadratoAnnuncio {
+  background: #145946;
+  max-width: 600px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 675px;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+#annuncioLabel
+{
+	text-align: center;
+  	margin-bottom: 20px;
+  	margin-left: 50px;
+  	font-size: 16px;
+  	color: #B0D9D1;
+}
+
+input#imagine
+{
+	text-align: center;
+  	margin-bottom: 20px;
+  	margin-left: 15px;
+  	font-size: 16px;
+  	color: #B0D9D1;
+}
+
+#quadratoAnnuncio h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #B0D9D1;
+}
+
+/* Form inputs */
+.input,
+textarea,
+select,
+input[type="file"] {
+  width: 80%;
+  padding: 12px 15px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.input:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Select wrappers */
+.select {
+  margin: 10px 0;
+}
+
+/* File input */
+input[type="file"] {
+  border: none;
+}
+
+/* Submit button */
+#submitButton,
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 1.5rem;
+}
+
+#submitButton:hover,
+button[type="submit"]:hover {
+  background-color: #074035;
+}

@@ -18,12 +18,17 @@ public class UtenteGuestDAO implements InterfaceDataAccessObject<UtenteGuestBean
 
 	@Override
 	public synchronized void doSave(UtenteGuestBean utenteGuest) throws SQLException {
-
+		
+		System.out.print("sto eseguendo il doSave di guest!!!");
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + UtenteGuestDAO.TABLE_NAME
 				+ " (codice_utente, codice_carrello) VALUES (?, ?)";
+		
+		// salvo il suo carrello nel database
+		CarrelloDAO dao = new CarrelloDAO();
+		dao.doSave(new CarrelloBean(utenteGuest.getCodice_carrello(), 0, new ArrayList<AnnuncioBean>()));
 		
 
 		try {
@@ -34,10 +39,6 @@ public class UtenteGuestDAO implements InterfaceDataAccessObject<UtenteGuestBean
 
 			// salvo l'utente nel database
 			preparedStatement.executeUpdate();
-			
-			// salvo il suo carrello nel database
-			CarrelloDAO dao = new CarrelloDAO();
-			dao.doSave(new CarrelloBean(utenteGuest.getCodice_carrello(), 0, null));
 			
 
 		} finally {
@@ -95,10 +96,6 @@ public class UtenteGuestDAO implements InterfaceDataAccessObject<UtenteGuestBean
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
 			preparedStatement = connection.prepareStatement(deleteSQL);
 			preparedStatement.setString(1, codice_utente);
-
-			// Cancella il carrello all'utente associato
-			CarrelloDAO dao = new CarrelloDAO();
-			dao.doDelete(this.doRetrieveByKey(codice_utente).getCodice_carrello());
 			
 			result = preparedStatement.executeUpdate();
 
@@ -162,7 +159,7 @@ public class UtenteGuestDAO implements InterfaceDataAccessObject<UtenteGuestBean
 		String deleteSQL = "DELETE FROM " + UtenteGuestDAO.TABLE_NAME + " WHERE codice_utente = ?";
 		
 		// associa il carrello all'utente iscritto
-		String updateSQL = "UPDATE UtenteIscritto SET codice_carrello = ? WHERE email = ?";
+		String updateSQL = "UPDATE UtenteIscritto SET codice_carrello = ? WHERE e_mail = ?";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);

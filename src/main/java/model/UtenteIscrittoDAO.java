@@ -23,7 +23,7 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + UtenteIscrittoDAO.TABLE_NAME
-				+ " (email, nome, cognome, tipo_utente, password, citta, cap, via, codice_carrello) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (e_mail, nome, cognome, tipo_utente, password, città, cap, via, codice_carrello) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -40,10 +40,6 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 
 			// salvo l'utente nel database
 			preparedStatement.executeUpdate();
-						
-			// salvo il suo carrello nel database
-			CarrelloDAO dao = new CarrelloDAO();
-			dao.doSave(new CarrelloBean(utenteIscritto.getCodice_carrello(), 0, null));
 			
 
 		} finally {
@@ -63,7 +59,7 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 
 		UtenteIscrittoBean bean = new UtenteIscrittoBean();
 
-		String selectSQL = "SELECT * FROM " + UtenteIscrittoDAO.TABLE_NAME + " WHERE email = ?";
+		String selectSQL = "SELECT * FROM " + UtenteIscrittoDAO.TABLE_NAME + " WHERE e_mail = ?";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -73,12 +69,12 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				bean.setEmail(rs.getString("email"));
+				bean.setEmail(rs.getString("e_mail"));
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setTipo_utente(rs.getString("tipo_utente"));
 				bean.setPassword(rs.getString("password")); 
-				bean.setCitta(rs.getString("citta"));
+				bean.setCitta(rs.getString("città"));
 				bean.setCap(rs.getInt("cap"));
 				bean.setVia(rs.getString("via"));
 				bean.setCodice_carrello(rs.getString("codice_carrello"));
@@ -102,7 +98,7 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + UtenteIscrittoDAO.TABLE_NAME + " WHERE email = ?";
+		String deleteSQL = "DELETE FROM " + UtenteIscrittoDAO.TABLE_NAME + " WHERE e_mail = ?";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -148,12 +144,12 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 			while (rs.next()) {
 				UtenteIscrittoBean bean = new UtenteIscrittoBean();
 
-				bean.setEmail(rs.getString("email"));
+				bean.setEmail(rs.getString("e_mail"));
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setTipo_utente(rs.getString("tipo_utente"));
 				bean.setPassword(rs.getString("password")); 
-				bean.setCitta(rs.getString("citta"));
+				bean.setCitta(rs.getString("città"));
 				bean.setCap(rs.getInt("cap"));
 				bean.setVia(rs.getString("via"));
 				bean.setCodice_carrello(rs.getString("codice_carrello"));
@@ -199,8 +195,8 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 		int result = 0;
 
 		// cancella tutte le tuple dalle tabelle che coincidono con l'email
-		String deleteSQL1 = "SELECT codice_ordine FROM Ordine WHERE email = ?";
-		String deleteSQL2 = "SELECT targa FROM Annuncio WHERE email = ?";
+		String deleteSQL1 = "SELECT codice_ordine FROM Ordine WHERE e_mail = ?";
+		String deleteSQL2 = "SELECT targa FROM Annuncio WHERE e_mail = ?";
 
 
 		try {
@@ -345,7 +341,7 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 
 	    String updateSQL = "UPDATE Annuncio SET titolo = ?, descrizione = ?, prezzo = ?, tipologia = ?, colore = ?, " +
 	                       "km = ?, anno = ?, carburante = ?, marca = ?, modello = ?, cilindrata = ?, n_porte = ?, " +
-	                       "citta = ?, email = ?, visibilita = ? WHERE targa = ?";
+	                       "citta = ?, e_mail = ?, visibilita = ? WHERE targa = ?";
 
 	    try {
 	        connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -535,11 +531,84 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 		return "Successo";
 	}
 	
+	
 	// verifica se l'utente è amministratore
 	public boolean isAmministratore(String email) throws SQLException
 	{
 		return doRetrieveByKey(email).getTipo_utente().equals(Tipo_utente.Amministratore);
 	}
+	
+	
+	// verifica se l'utente è già registrato
+	public boolean utenteEsiste(String email) throws SQLException 
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+	    
+	    try 
+	    {
+	    	List<UtenteIscrittoBean> users = doRetrieveAll("e_mail");
+	    	for(UtenteIscrittoBean utente: users)
+	    	{
+	    		if(email.equals(utente.getEmail()))
+	    			return true;
+	    	}
+	    
+	    } 
+	    finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	    
+	    return false;
+	}
+	
+	public boolean verificaCredenziali(String email, String password) throws SQLException 
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+	    
+	    try 
+	    {
+	    	List<UtenteIscrittoBean> users = doRetrieveAll("e_mail");
+	    	for(UtenteIscrittoBean utente: users)
+	    	{
+	    		if(email.equals(utente.getEmail()) && sha256(password).equals(utente.getPassword()))
+	    		{
+	    			return true;
+	    		}
+	    	}
+	    
+	    } 
+	    finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	    
+	    return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }

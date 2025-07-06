@@ -35,7 +35,7 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				+ "data_acquisto, "
 				+ "tempo_spedizione, "
 				+ "codice_fattura, "
-				+ "email) "
+				+ "e_mail) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 
@@ -108,7 +108,7 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				bean.setDataAcquisto(rs.getDate("data_acquisto"));
 				bean.setTempo_spedizione(rs.getString("tempo_spedizione"));
 				bean.setCodiceFattura(rs.getString("codice_fattura"));
-				bean.setEmail_compratore(rs.getString("email"));     
+				bean.setEmail_compratore(rs.getString("e_mail"));     
 				
 			}
 
@@ -186,7 +186,7 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				bean.setDataAcquisto(rs.getDate("data_acquisto"));
 				bean.setTempo_spedizione(rs.getString("tempo_spedizione"));
 				bean.setCodiceFattura(rs.getString("codice_fattura"));
-				bean.setEmail_compratore(rs.getString("email"));
+				bean.setEmail_compratore(rs.getString("e_mail"));
 				
 				ordini.add(bean);
 			}

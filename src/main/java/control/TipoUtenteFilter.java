@@ -10,6 +10,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.GeneraCodici;
 import model.UtenteGuestBean;
@@ -22,6 +23,8 @@ public class TipoUtenteFilter implements Filter
 	@Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
     {
+		
+		
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession(false);
         String tipoUtente = "guest";
@@ -29,6 +32,62 @@ public class TipoUtenteFilter implements Filter
 
         // ottengo il cookie tipoutente se cè
         Cookie[] cookies = ((HttpServletRequest) request).getCookies();
+        
+        String codiceGuest = null;
+        
+        if (cookies != null) 
+        {
+        	
+            for (Cookie cookie : cookies) {
+                if ("codice_utente_guest".equals(cookie.getName())) {
+                    codiceGuest = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        else
+        {
+        	
+        	// crea nuovo utente guest
+        	codiceGuest = new GeneraCodici().generaCodiceUtente();
+        	String codiceCarrello = new GeneraCodici().generaCodiceCarrello(codiceGuest);
+        	UtenteGuestBean utente = new UtenteGuestBean(codiceGuest, codiceCarrello);
+        	
+        	// salvo l'utente nel db
+        	try {
+				new UtenteGuestDAO().doSave(utente);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        	
+        	// imposto il cookie per codice_utente_guest
+        	Cookie c = new Cookie("codice_utente_guest", codiceGuest);
+        	c.setMaxAge(60 * 60 * 24 * 365);  // 1 anno
+        	c.setPath("/");
+        	((HttpServletResponse) response).addCookie(c);
+        }
+        
+        if(codiceGuest == null)
+        {
+        	
+        	// crea nuovo utente guest
+        	codiceGuest = new GeneraCodici().generaCodiceUtente();
+        	String codiceCarrello = new GeneraCodici().generaCodiceCarrello(codiceGuest);
+        	UtenteGuestBean utente = new UtenteGuestBean(codiceGuest, codiceCarrello);
+        	
+        	// salvo l'utente nel db
+        	try {
+				new UtenteGuestDAO().doSave(utente);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        	
+        	// imposto il cookie per codice_utente_guest
+        	Cookie c = new Cookie("codice_utente_guest", codiceGuest);
+        	c.setMaxAge(60 * 60 * 24 * 365);  // 1 anno
+        	c.setPath("/");
+        	((HttpServletResponse) response).addCookie(c);
+        }
         
         if (cookies != null) 
         {
@@ -40,9 +99,20 @@ public class TipoUtenteFilter implements Filter
 	        }
         }
         
+        if (session != null) {
+            Object utente = session.getAttribute("utente");
+
+            if (utente instanceof UtenteIscrittoBean utente2) {
+                tipoUtente = utente2.getTipo_utente().toString(); // es. "Iscritto" o "Amministratore"
+            }
+            	
+        }
+        
         if(tipoUtenteCookie == null)
         {
+        	
 	        if (session != null) {
+	        	
 	            Object utente = session.getAttribute("utente");
 	
 	            if (utente instanceof UtenteIscrittoBean utente2) {
@@ -51,7 +121,6 @@ public class TipoUtenteFilter implements Filter
 	            	
 	        }
 	        else {
-	        	String codiceGuest = null;
 	        	
 	            if (cookies != null) 
 	            {
@@ -80,6 +149,7 @@ public class TipoUtenteFilter implements Filter
 	            	Cookie c = new Cookie("codice_utente_guest", codiceGuest);
 	            	c.setMaxAge(60 * 60 * 24 * 365);  // 1 anno
 	            	c.setPath("/");
+	            	((HttpServletResponse) response).addCookie(c);
 	            }
 	        }
 	        
@@ -87,6 +157,7 @@ public class TipoUtenteFilter implements Filter
         	Cookie c = new Cookie("tipoUtente", tipoUtente);
         	c.setMaxAge(60 * 60 * 24 * 365);  // 1 anno
         	c.setPath("/");
+        	((HttpServletResponse) response).addCookie(c);
 	        
 	        // Salvo nella request per essere letto nella JSP
 	        req.setAttribute("tipoUtente", tipoUtente);
@@ -95,6 +166,7 @@ public class TipoUtenteFilter implements Filter
 	        chain.doFilter(request, response);
         }
         else {
+        	
         	// Salvo nella request per essere letto nella JSP
             req.setAttribute("tipoUtente", tipoUtente);
 

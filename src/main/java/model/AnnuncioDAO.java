@@ -26,7 +26,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 
 		// salva annuncio nell apposita tabella
 		String insertSQL = "INSERT INTO " + AnnuncioDAO.TABLE_NAME
-				+ " (targa, visibilita, titolo, descrizione, prezzo, tipologia, colore, km, anno, carburante, marca, modello, cilindrata, n_porte, citta, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (targa, visibilita, titolo, descrizione, prezzo, tipologia, colore, km, anno, carburante, marca, modello, cilindrata, n_porte, citta, e_mail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		
 		try {
@@ -99,7 +99,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 				bean.setCilindrata(rs.getInt("cilindrata"));
 				bean.setN_porte(rs.getInt("n_porte"));
 				bean.setCitta(rs.getString("citta"));
-				bean.setEmail(rs.getString("email"));
+				bean.setEmail(rs.getString("e_mail"));
 			}
 
 		} finally {
@@ -182,7 +182,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 				bean.setCilindrata(rs.getInt("cilindrata"));
 				bean.setN_porte(rs.getInt("n_porte"));
 				bean.setCitta(rs.getString("citta"));
-				bean.setEmail(rs.getString("email"));
+				bean.setEmail(rs.getString("e_mail"));
 				annunci.add(bean);
 			}
 
