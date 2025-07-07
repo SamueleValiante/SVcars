@@ -22,7 +22,7 @@
 		            <div>
 		                <h5>Link utili</h5>
 		                <ul>
-		                    <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+		                    <li><a href="/SVcars/VisualizzaAnnunciServlet">Home</a></li>
 		                    <li><a href="/SVcars/VisualizzaAnnunciCarrelloServlet">Carrello</a></li>
 		                </ul>
 		            </div>

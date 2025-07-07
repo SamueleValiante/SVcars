@@ -584,14 +584,10 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 	    	}
 	    
 	    } 
-	    finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
+	    catch(Exception e)
+	    {
+	    	e.printStackTrace();
+	    }
 	    
 	    return false;
 	}

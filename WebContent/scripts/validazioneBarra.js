@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("barraForm");
   const input = document.getElementById("barraRicercaInput");
+  const risultatiDiv = document.getElementById("risultatiDiv");
 
   form.addEventListener("submit", function (event) {
     event.preventDefault(); // blocca sempre il submit
@@ -43,23 +44,50 @@ document.addEventListener("DOMContentLoaded", function () {
     if (vecchioErrore) vecchioErrore.remove();
   }
 
-  function inviaAjax(valore) {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "/SVcars/EffettuaRicercaServlet?barraRicerca=" + encodeURIComponent(valore), true);
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  // Funzione che invia la richiesta AJAX
+  // Valida e invia la richiesta AJAX
+	function inviaRicercaAjax() 
+   	{
+   		const valore = input.value.trim();
+    	const regex = /^[a-zA-Z0-9\s]{2,}$/;
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        const risultatiDiv = document.getElementById("risultatiAnnunci");
-        if (risultatiDiv) {
-          risultatiDiv.innerHTML = xhr.responseText;
-        } else {
-          console.warn("Div #risultatiAnnunci non trovato nella pagina");
-        }
-      }
-    };
+     	if (valore.length < 2 && valore.lenght > 0) || !regex.test(valore)) {
+        	mostraErrore("Inserisci almeno 2 caratteri validi");
+        	return;
+     	}
 
-    xhr.send();
-  }
+     	rimuoviErrore();
+
+     	const queryString = new URLSearchParams(new FormData(form)).toString();
+
+     	fetch(form.action + "?" + queryString, {
+        	method: "GET",
+       		headers: {
+         		"X-Requested-With": "XMLHttpRequest"
+       		}
+     	})
+       
+		.then(response => {
+         	if (!response.ok) throw new Error("Errore nella risposta");
+         		return response.text();
+       	 })
+       	.then(html => {
+         	risultatiDiv.innerHTML = html;
+       	 })
+       	.catch(error => {
+         	console.error("Errore AJAX:", error);
+         	risultatiDiv.innerHTML = "<p>Errore nella ricerca.</p>";
+         });
+   }
+	
+   // Trigger sugli eventi
+     form.addEventListener("submit", function (e) {
+       e.preventDefault();
+       inviaRicercaAjax();
+     });
+
+     input.addEventListener("input", function () {
+       rimuoviErrore();
+     });
 });
 

@@ -26,6 +26,8 @@
 		<jsp:include page="jsp/PannelloSidebar.jsp"></jsp:include>
 		
 		<jsp:include page="jsp/Footer.jsp"></jsp:include>
+		
+		<script src="${pageContext.request.contextPath}/scripts/validazioneBarra.js"></script>
 	</body>
 
 </html>

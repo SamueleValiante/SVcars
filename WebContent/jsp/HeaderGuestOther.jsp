@@ -9,11 +9,11 @@
 
 	<body>
 		<header>
-			<form id="carrello" action="${pageContext.request.contextPath}/index.jsp" method="get">
+			<form id="carrello" action="/SVcars/VisualizzaAnnunciServlet" method="get">
 				<input id="carrelloIn" type="image" src="${pageContext.request.contextPath}/images/home.png" width=50 height=50 alt="Carrello" align="left"/>
 			</form>
 			
-			<form id="barraForm" action="/SVcars/EffettuaRicercaServlet" method="get">
+			<form  id="barraForm" action="/SVcars/EffettuaRicercaServlet" method="get">
 				<p id="logo"> SVcars </p>
 				<div id="barraecerca">
   					<input type="text" name="barraRicerca" id="barraRicercaInput" placeholder="Cerca...">

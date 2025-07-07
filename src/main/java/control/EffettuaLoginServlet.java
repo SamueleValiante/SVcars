@@ -40,7 +40,7 @@ public class EffettuaLoginServlet extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("utente", utente); 
 					
-					response.sendRedirect(request.getContextPath() + "/index.jsp");
+					response.sendRedirect(request.getContextPath() + "/VisualizzaAnnunciServlet");
 				}
 					
 			}

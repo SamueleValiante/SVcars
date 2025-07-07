@@ -30,6 +30,7 @@
 		<jsp:include page="Footer.jsp"></jsp:include>
 		
 		<script src="${pageContext.request.contextPath}/scripts/validaLogin.js"></script>
+		<script src="${pageContext.request.contextPath}/scripts/validazioneBarra.js"></script>
 	</body>
 
 </html>

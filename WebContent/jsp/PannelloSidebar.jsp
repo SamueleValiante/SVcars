@@ -4,6 +4,7 @@
 <head>
     <title>Pagina con layout affiancato</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/PannelloSidebar.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizzaAnnunci.css">
 </head>
 <body>
     <div class="layout-container">

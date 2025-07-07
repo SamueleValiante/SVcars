@@ -9,7 +9,7 @@
 
 	<body>
 		<header>
-			<form id="carrello" action="index.jsp" method="get">
+			<form id="carrello" action="/SVcars/VisualizzaAnnunciServlet" method="get">
 				<input id="carrelloIn" type="image" src="${pageContext.request.contextPath}/images/home.png" width=50 height=50 alt="Carrello" align="left"/>
 			</form>
 			
@@ -26,7 +26,7 @@
 					<input id="menuIn" type="image" src="${pageContext.request.contextPath}/images/opzioni.jpg" width="40" height="40" alt="Opzioni" />
 				
 					<ul id="dropdown-menu" class="hidden">
-				  		<li><a href="/SVcars/jsp/creaAnnuncio.jsp">Crea annuncio</a></li>
+				  		<li><a href="/SVcars/jsp/CreaAnnuncio.jsp">Crea annuncio</a></li>
 				    	<li><a href="/SVcars/jsp/ordini.jsp">I miei ordini</a></li>
 				    	<li><a href="/SVcars/jsp/mieiAnnunci.jsp">I miei annunci</a></li>
 				    	<li><a href="/SVcars/EffettuaLogoutServlet">Logout</a></li>

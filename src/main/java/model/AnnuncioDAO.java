@@ -26,7 +26,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 
 		// salva annuncio nell apposita tabella
 		String insertSQL = "INSERT INTO " + AnnuncioDAO.TABLE_NAME
-				+ " (targa, visibilita, titolo, descrizione, prezzo, tipologia, colore, km, anno, carburante, marca, modello, cilindrata, n_porte, citta, e_mail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (targa, visibilita, titolo, descrizione, prezzo, tipologia, colore, km, anno, carburante, marca, modello, cilindrata, n_porte, città, e_mail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		
 		try {
@@ -98,7 +98,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 				bean.setModello(rs.getString("modello"));
 				bean.setCilindrata(rs.getInt("cilindrata"));
 				bean.setN_porte(rs.getInt("n_porte"));
-				bean.setCitta(rs.getString("citta"));
+				bean.setCitta(rs.getString("città"));
 				bean.setEmail(rs.getString("e_mail"));
 			}
 
@@ -181,7 +181,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 				bean.setModello(rs.getString("modello"));
 				bean.setCilindrata(rs.getInt("cilindrata"));
 				bean.setN_porte(rs.getInt("n_porte"));
-				bean.setCitta(rs.getString("citta"));
+				bean.setCitta(rs.getString("città"));
 				bean.setEmail(rs.getString("e_mail"));
 				annunci.add(bean);
 			}
@@ -281,6 +281,22 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 	    PreparedStatement ps = conn.prepareStatement("UPDATE Annuncio SET visibilita = true WHERE targa = ?");
 	    ps.setString(1, targa);
 	    ps.executeUpdate();
+	}
+	
+	public boolean verificaTargaEsiste(String targa) throws SQLException
+	{
+		boolean valide = false;
+		
+		List<AnnuncioBean> annunci = doRetrieveAll("targa");
+    	for(AnnuncioBean annuncio: annunci)
+    	{
+    		if(targa.equals(annuncio.getTarga().equals(targa)))
+    		{
+    			return true;
+    		}
+    	}
+		
+		return valide;
 	}
 	
 	

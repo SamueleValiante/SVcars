@@ -5,8 +5,18 @@
 	<display-name>SVcars</display-name>
   
 	<welcome-file-list>
-  		<welcome-file>index.jsp</welcome-file>
+  		<welcome-file>VisualizzaAnnunciServlet</welcome-file>
 	</welcome-file-list>
+	
+	<servlet>
+	    <servlet-name>VisualizzaAnnunciServlet</servlet-name>
+	    <servlet-class>control.VisualizzaAnnunciServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>VisualizzaAnnunciServlet</servlet-name>
+	    <url-pattern>/VisualizzaAnnunciServlet</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>
 	    <servlet-name>verificaCredenziali</servlet-name>
@@ -16,6 +26,16 @@
 	<servlet-mapping>
 	    <servlet-name>verificaCredenziali</servlet-name>
 	    <url-pattern>/verificaCredenziali</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>verificaTarga</servlet-name>
+	    <servlet-class>control.VerificaTargaServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>verificaTarga</servlet-name>
+	    <url-pattern>/verificaTarga</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

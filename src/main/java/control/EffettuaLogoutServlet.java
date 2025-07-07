@@ -37,7 +37,7 @@ public class EffettuaLogoutServlet extends HttpServlet {
       }
 
       // Reindirizza alla home
-      response.sendRedirect(request.getContextPath() + "/index.jsp");
+      response.sendRedirect(request.getContextPath() + "/VisualizzaAnnunciServlet");
 	}
 
 }
