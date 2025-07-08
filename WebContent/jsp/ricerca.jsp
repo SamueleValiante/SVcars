@@ -9,10 +9,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>SVcars Ricerca</title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/PannelloSidebar.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizzaAnnunci.css">
 	</head>
 	
-	<body id="risultatiDiv">
+	<body>
 		<% String tipoUtente = request.getAttribute("tipoUtente").toString(); %>
 	
 		<% if(tipoUtente.equals("Amministratore")) {%>
@@ -28,7 +29,7 @@
 		<div class="contenitorePagina">
 			<jsp:include page="SidebarSX.jsp" />
 			
-			<div id="ricercaDiv">
+			<div id="risultati">
 				<div class="pannelloCentrale">
 					<% 
 						List<AnnuncioBean> listaAnnunci = (List<AnnuncioBean>) request.getAttribute("annunciCercati"); 
@@ -50,8 +51,8 @@
 								</li>
 							<% } %>
 						</ul>
-					<% } else { 
-					%>
+						<% } else { 
+						%>
 						<h1>Nessun Annuncio trovato!</h1>
 					<% } %>
 				</div>

@@ -35,9 +35,8 @@
 			</form>
 			
 			<script src="${pageContext.request.contextPath}/scripts/menuTendina.js" defer></script>
-		
 		</header>
-		<script src="${pageContext.request.contextPath}/scripts/validazioneBarra.js"></script>
+		
 	</body>
 
 </html>

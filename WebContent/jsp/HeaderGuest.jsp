@@ -8,6 +8,7 @@
 	</head>
 
 	<body>
+		<div id="ricercaDiv">
 		<header>
 			<form id="carrello" action="/SVcars/VisualizzaAnnunciCarrelloServlet" method="get">
 				<input id="carrelloIn" type="image" src="${pageContext.request.contextPath}/images/carrello.png" width=50 height=50 alt="Carrello" align="left"/>
@@ -16,7 +17,7 @@
 			<form id="barraForm" action="/SVcars/EffettuaRicercaServlet" method="get">
 				<p id="logo"> SVcars </p>
 				<div id="barraecerca">
-  					<input type="text" name="barraRicerca" id="barraRicercaInput" placeholder="Cerca...">
+  					<input type="text" name="barraRicerca" id="barraRicercaInput" onchange="ricercaAnnunci()" placeholder="Cerca...">
   					<input id="cerca" type="image" src="${pageContext.request.contextPath}/images/cerca.png" width=40 height=30 alt="Invia" />
 				</div>
 			</form>
@@ -35,6 +36,7 @@
 			<script src="${pageContext.request.contextPath}/scripts/menuTendina.js" defer></script>
 		
 		</header>
+		</div>
 	</body>
 
 </html>

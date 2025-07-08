@@ -18,7 +18,7 @@
 				
 				<div class="filtro">
 					<label class="filtroLabel" for="barraRicerca">Cerca titolo:</label>
-					<input type="text" name="barraRicerca" id="barraRicercaSidebar" placeholder="Cerca...">
+					<input type="text" name="barraRicercaFiltro" id="barraRicercaSidebar" placeholder="Cerca...">
 				</div>
 				
 				<div class="filtro">
@@ -42,15 +42,15 @@
 					<label class="filtroLabel" for="modelloAuto">Seleziona un modello:</label>
 					<select name="modelloAuto" class="selectF">
 						 <option value="" selected>-- Seleziona --</option>
-						 <option value="a1">A1</option>
-						 <option value="a3">A3</option>
-						 <option value="a4">A4</option>
-						 <option value="a6">A6</option>
-						 <option value="q2">Q2</option>
-						 <option value="q5">Q5</option>
-						 <option value="q7">Q7</option>
-						 <option value="tt">TT</option>
-						 <option value="e-tron">e-tron</option>
+						 <option value="A1">A1</option>
+						 <option value="A3">A3</option>
+						 <option value="A4">A4</option>
+						 <option value="A6">A6</option>
+						 <option value="Q2">Q2</option>
+						 <option value="Q5">Q5</option>
+						 <option value="Q7">Q7</option>
+						 <option value="TT">TT</option>
+						 <option value="E-Tron">e-tron</option>
 					</select>
 				</div>
 				
@@ -188,18 +188,18 @@
 				  <label class="filtroLabel" for="coloreAuto">Colore:</label>
 				  <select name="coloreAuto" class="selectF">
 				    <option value="" selected>-- Seleziona --</option>
-				    <option value="nero">Nero</option>
-				    <option value="bianco">Bianco</option>
-				    <option value="grigio">Grigio</option>
-				    <option value="argento">Argento</option>
-				    <option value="blu">Blu</option>
-				    <option value="rosso">Rosso</option>
-				    <option value="verde">Verde</option>
-				    <option value="giallo">Giallo</option>
-				    <option value="marrone">Marrone</option>
-				    <option value="arancione">Arancione</option>
-				    <option value="oro">Oro</option>
-				    <option value="viola">Viola</option>
+				    <option value="Nero">Nero</option>
+				    <option value="Bianco">Bianco</option>
+				    <option value="Grigio">Grigio</option>
+				    <option value="Argento">Argento</option>
+				    <option value="Blu">Blu</option>
+				    <option value="Rosso">Rosso</option>
+				    <option value="Verde">Verde</option>
+				    <option value="Giallo">Giallo</option>
+				    <option value="Marrone">Marrone</option>
+				    <option value="Arancione">Arancione</option>
+				    <option value="Oro">Oro</option>
+				    <option value="Viola">Viola</option>
 				  </select>
 				</div>
 				
@@ -207,14 +207,14 @@
 				  <label class="filtroLabel" for="tipologiaAuto">Tipologia:</label>
 				  <select name="tipologiaAuto" class="selectF">
 				    <option value="" selected>-- Seleziona --</option>
-				    <option value="suv">SUV</option>
-				    <option value="berlina">Berlina</option>
-				    <option value="citycar">City Car</option>
-				    <option value="stationwagon">Station Wagon</option>
-				    <option value="cabrio">Cabrio</option>
-				    <option value="coupe">Coupé</option>
-				    <option value="monovolume">Monovolume</option>
-				    <option value="pickup">Pick-up</option>
+				    <option value="Suv">SUV</option>
+				    <option value="Berlina">Berlina</option>
+				    <option value="Sitycar">City Car</option>
+				    <option value="Stationwagon">Station Wagon</option>
+				    <option value="Cabrio">Cabrio</option>
+				    <option value="Coupe">Coupé</option>
+				    <option value="Monovolume">Monovolume</option>
+				    <option value="Pickup">Pick-up</option>
 				  </select>
 				</div>
 				

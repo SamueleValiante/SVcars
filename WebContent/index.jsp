@@ -8,6 +8,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>SVcars HomePage</title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/PannelloSidebar.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizzaAnnunci.css">
 	</head>
 	
 	<body>
@@ -23,9 +25,16 @@
 			<jsp:include page="jsp/HeaderGuest.jsp"></jsp:include>
 		<% } %>
 		
-		<jsp:include page="jsp/PannelloSidebar.jsp"></jsp:include>
+		
+			<div class="layout-container">
+	        	<jsp:include page="jsp/SidebarSX.jsp" />
+	        	<jsp:include page="jsp/VisualizzaAnnunci.jsp" />
+	    	</div>
 		
 		<jsp:include page="jsp/Footer.jsp"></jsp:include>
+		
+		
+		<script>const contextPath = "${pageContext.request.contextPath}";</script>
 		
 		<script src="${pageContext.request.contextPath}/scripts/validazioneBarra.js"></script>
 	</body>
