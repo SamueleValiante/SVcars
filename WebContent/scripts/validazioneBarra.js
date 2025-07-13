@@ -63,44 +63,33 @@ document.addEventListener("DOMContentLoaded", function () {
 	function mostraRisultati(lista) 
 	{
 	    const container = document.getElementById("risultati");
-	    container.innerHTML = ""; // pulisci
+	    container.innerHTML = ""; // pulisci tutto
 
 	    if (lista.length == 0) {
 	        container.innerHTML = "<h1>Nessun annuncio trovato.</h1>";
 	        return;
 	    }
 		
-		const link = document.createElement("link");
-		link.rel = "stylesheet";
-		link.type = "text/css";
-		link.href = contextPath + "/css/visualizzaAnnunci.css"; 
-		document.head.appendChild(link);
+		const titolo = document.createElement("h2");
+		titolo.textContent = "Risultati della tua ricerca:";
+		container.appendChild(titolo);
+
+	    const ul = document.createElement("ul");
 
 	    lista.forEach(annuncio => {
-	        const div = document.createElement("div");
-	        div.innerHTML = `
-					
-					<h1></h1>
-					<div class="offerta">
-						<div class="dati-offerta">
-						</div>
-					</div>
-									
-					<h2></h2>
-					<ul>
-						<li>
-							<div class="annuncio">
-								<img src="${contextPath}/images/${annuncio.targa}.jpg" alt="Annuncio"> 
-		            			<label class="annuncioTitolo">${annuncio.titolo}</label>
-		            			<label class="annuncioLabel">${annuncio.citta}</label>
-								<label class="annuncioPrezzo">${annuncio.prezzo}€</label>
-							</div>
-						</li>
-					</ul>
+	        const li = document.createElement("li");
+	        li.innerHTML = `
+	            <div class="annuncio">
+	                <img src="${contextPath}/images/${annuncio.targa}.jpg" alt="Annuncio">
+	                <label class="annuncioTitolo">${annuncio.titolo}</label>
+	                <label class="annuncioLabel">${annuncio.citta}</label>
+	                <label class="annuncioPrezzo">${annuncio.prezzo}€</label>
+	            </div>
 	        `;
-			
-	        container.appendChild(div);
+	        ul.appendChild(li);
 	    });
+
+	    container.appendChild(ul);
 	}
 
 	

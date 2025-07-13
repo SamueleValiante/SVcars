@@ -137,6 +137,7 @@
 		
 		<jsp:include page="Footer.jsp"></jsp:include>
 		
+		<script src="${pageContext.request.contextPath}/scripts/modelliDinamicamenteAnnuncio.js"></script>
 		<script src="${pageContext.request.contextPath}/scripts/validaAnnuncio.js"></script>
 		<script src="${pageContext.request.contextPath}/scripts/validazioneBarra.js"></script>
 	</body>

@@ -224,6 +224,7 @@
 				
 			</form>
 		</section>
+		<script src="${pageContext.request.contextPath}/scripts/modelliDinamicamente.js"></script>
 		<script src="${pageContext.request.contextPath}/scripts/validazioneForm.js"></script>
 	</body>
 </html>
