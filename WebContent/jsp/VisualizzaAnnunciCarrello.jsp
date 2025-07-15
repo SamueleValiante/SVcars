@@ -30,17 +30,24 @@
 				List<AnnuncioBean> listaAnnunci = (List<AnnuncioBean>) request.getAttribute("annunciCarrello"); 
 				if (listaAnnunci != null && !listaAnnunci.isEmpty()) {
 			%>
+				<h2>Ituoi preferiti</h2>
 				<ul>
 					<% for (AnnuncioBean annuncio : listaAnnunci) {
 						String targa = annuncio.getTarga();
 					%>
 						<li>
-							<img src="images/<%= targa %>.png" alt="Annuncio">
-							<label><%annuncio.getTitolo(); %></label>
-							<label><%annuncio.getPrezzo(); %></label>
+							
+							<div class="annuncio">
+								<img src="${pageContext.request.contextPath}/images/<%= targa %>.jpg" alt="Annuncio">
+								<a href="/SVcars/VisualizzaAnnuncioServlet?targa=<%= annuncio.getTarga() %>" class="annuncio-link">
+						            <label class="annuncioTitolo"><%= annuncio.getTitolo() %></label>
+						            <label class="annuncioLabel"><%= annuncio.getCitta() %></label>
+						            <label class="annuncioPrezzo"><%= (int) annuncio.getPrezzo() %>€</label>
+						        </a>
+						    </div>
 						</li>
+
 					<% } %>
-				</ul>
 			<% } else { %>
 				<h1>Il tuo carrello è vuoto</h1>
 			<% } %>

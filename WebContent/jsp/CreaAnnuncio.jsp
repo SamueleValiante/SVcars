@@ -27,7 +27,7 @@
 			<div id=quadratoAnnuncio>
 				<h2>Crea nuovo annuncio</h2>
 				
-				<form id="annuncioForm" action="/SVcars/CreaAnnuncioServlet" method="post" enctype="multipart/form-data">
+				<form id="annuncioForm" action="${pageContext.request.contextPath}/CreaAnnuncioServlet" method="post" enctype="multipart/form-data">
   					<label id="annuncioLabel" for="immagine">Seleziona immagine annuncio:</label><br>
   					<input type="file" id="immagine" name="immagine" accept="image/*"><br><br>
 				

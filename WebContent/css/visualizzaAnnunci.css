@@ -33,7 +33,7 @@ body {
     margin: 0 auto;
 }
 
-.offerta {
+.annuncio-link .offerta {
     display: flex;
     background-color: #074035;
     height: 320px;
@@ -42,7 +42,7 @@ body {
     margin-bottom: 40px;
 }
 
-.offerta img{
+.annuncio-link .offerta img{
     width: 50%;
     height: 300px;
     border-radius: 10px;

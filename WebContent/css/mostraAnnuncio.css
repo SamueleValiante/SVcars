@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #B0D9D1;
+    height: auto;
+    color: #333;
+}
+
+.pannelloVerde {
+    background-color: #074035;
+    max-width: 900px;
+    height: auto;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+#immagineAnnuncio {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #B0D9D1;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #27ae60;
+    margin-top: 30px;
+    border-bottom: 2px solid #27ae60;
+    padding-bottom: 5px;
+}
+
+label.Label2 {
+    display: inline-block;
+    width: 300px;
+    margin-right: 0px;
+    font-size: 25px;
+    margin-top: 50px;
+    font-weight: 600;
+    color: #B0D9D1;
+    margin: 8px 0;
+}
+
+.Label {
+    font-size: 20px;
+    margin-right: 500px;
+    margin-bottom: 60px;
+    color: black;
+    font-weight: bold;
+}
+
+#marca, #descrizione, #dettagli {
+    margin-top: 20px;
+}
+
+#descrizione .Label {
+    display: block;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+#dettagli {
+    display: flex;
+    flex-direction: column;
+}
+
+#dettagli .Label2{
+    display: inline-block;
+    margin: 5px 0;
+}
+
+#dettagli .Label {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.rigaDettaglio {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rigaDettaglio .Label2 {
+    width: 300px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #B0D9D1;
+}
+
+.rigaDettaglio .Label {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+#azioni{
+	display: flex;
+    align-items: center;
+    margin-left: 250px;
+    margin-top: 50px;
+}
+
+.in{
+	margin: 10px;
+	width: 200px;
+	height: 50px;
+	background-color: #B0D9D1;
+	border-radius: 35px;
+	font-size: 15px;
+}
+
+

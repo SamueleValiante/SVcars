@@ -1,41 +1,46 @@
 package control;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import model.AnnuncioBean;
+import model.AnnuncioDAO;
 
 /**
  * Servlet implementation class VisualizzaAnnuncioServlet
  */
 @WebServlet("/VisualizzaAnnuncioServlet")
-public class VisualizzaAnnuncioServlet extends HttpServlet {
+public class VisualizzaAnnuncioServlet extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public VisualizzaAnnuncioServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		// mi salvo la targa
+		String targa = request.getParameter("targa");
+		AnnuncioBean annuncio = new AnnuncioBean();
+		
+		// mi salvo tutti i dettagli 
+		try {
+			annuncio = new AnnuncioDAO().doRetrieveByKey(targa);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(annuncio != null)
+		{
+			request.setAttribute("annuncio", annuncio);
+			request.getRequestDispatcher("jsp/MostraAnnuncio.jsp").forward(request, response);
+		}
+		
+		else
+		{
+			// forward a error page: 404
+		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
