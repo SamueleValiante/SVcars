@@ -102,6 +102,13 @@ public class UtenteIscrittoBean implements Serializable
 	public void setCodice_carrello(String codice_carrello) {
 		this.codice_carrello = codice_carrello;
 	}
+
+	@Override
+	public String toString() {
+		return "UtenteIscrittoBean [email=" + email + ", nome=" + nome + ", cognome=" + cognome + ", tipo_utente="
+				+ tipo_utente + ", password=" + password + ", citta=" + citta + ", cap=" + cap + ", via=" + via
+				+ ", codice_carrello=" + codice_carrello + "]";
+	}
 	
 	
 	

@@ -39,5 +39,12 @@ public class UtenteGuestBean implements Serializable
 	public void setCodice_carrello(String codice_carrello) {
 		this.codice_carrello = codice_carrello;
 	}
+
+	@Override
+	public String toString() {
+		return "UtenteGuestBean [codice_utente=" + codice_utente + ", codice_carrello=" + codice_carrello + "]";
+	}
+	
+	
 	
 }

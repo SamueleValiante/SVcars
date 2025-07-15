@@ -88,10 +88,10 @@
 			
 			<div id="azioni">
 				<% if(user != null) {%>	
-					<form action="/SVcars/AggiungiAnnuncioCarrelloServlet" method="get">
+					<form action="/SVcars/RimuoviAnnunciCarrelloServlet" method="get">
 					    <input type="hidden" name="targa" value="<%= annuncio.getTarga() %>">
 					    <input type="hidden" name="carrello" value="<%= user.getCodice_carrello() %>">
-					    <input class="in" type="submit" value="Aggiungi al carrello">
+					    <input class="in" type="submit" value="Rimuovi dal carrello">
 					</form>
 				
 					<form action="" method="get">
@@ -99,10 +99,10 @@
 					</form>
 				<%} else {%>
 					
-					<form action="/SVcars/AggiungiAnnuncioCarrelloServlet" method="get">
+					<form action="/SVcars/RimuoviAnnunciCarrelloServlet" method="get">
 					    <input type="hidden" name="targa" value="<%= annuncio.getTarga() %>">
 					    <input type="hidden" name="carrello" value="<%= userG.getCodice_carrello() %>">
-					    <input class="in" type="submit" value="Aggiungi al carrello">
+					    <input class="in" type="submit" value="Rimuovi dal carrello">
 					</form>
 
 				<%} %>

@@ -1,19 +1,33 @@
 @charset "UTF-8";
 
-div.pannelloCarrello {   
-    height: 1000px;
-	flex: 1;
+body {
+    background-color: #B0D9D1;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.pannelloCarrello h1 {
     padding: 20px;
-	background-color: #B0D9D1;
-	align-items: center;
+    text-align: center;
 }
 
-.pannelloCarrello h1{
-	text-align: center;
-	margin-top: 40px;
+.pannelloCarrello h2 {
+    padding: 20px;
+    font-size: 30px;
+    font-family:  Arial, sans-serif;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
-.pannelloCentrale ul {
+.pannelloCarrello {
+    padding: 20px;
+    max-width: 1200px;
+    height: 1200px;
+    margin: 0 auto;
+}
+
+.pannelloCarrello ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -57,4 +71,14 @@ div.pannelloCarrello {
     display: block;
     margin-top: 10px;
     font-size: 16px;
+}
+
+.ordina {
+	background-color: #074035;
+	color: #B0D9D1;
+	font-weight:bold;
+	font-size: 17px;
+	border-radius: 15px;
+	width: 200px;
+	height: 50px;
 }
