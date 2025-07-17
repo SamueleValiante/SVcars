@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+body {
+  background-color: #B0D9D1;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.containerOrdini {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.containerOrdini h2 {
+  font-size: 2rem;
+  color: #145946;
+  margin-bottom: 30px;
+}
+
+.ordineCard {
+  background-color: #145946;
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.ordineCard p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.visualizzaBtn {
+  margin-top: 15px;
+  padding: 10px 18px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.visualizzaBtn:hover {
+  background-color: #074035;
+}

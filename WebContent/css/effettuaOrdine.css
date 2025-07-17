@@ -1,0 +1,116 @@
+body {
+  background-color: #B0D9D1;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#quadratoOrdine {
+  background-color: #145946;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 2rem 3rem;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+#quadratoOrdine h2 {
+  color: #B0D9D1;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.rigaDettaglio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.Label2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-decoration: underline;
+  margin-right: 15px;
+  flex: 1;
+  min-width: 230px;
+}
+
+.Label {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  flex: 2;
+  min-width: 300px;
+}
+
+.Labeltotale {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  flex: 2;
+  min-width: 300px;
+}
+
+.totaleLabel {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  text-decoration: underline;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-right: 50px;
+}
+
+.input,
+textarea,
+input[type="file"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus,
+textarea:focus,
+input[type="file"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Submit button */
+#submitButton,
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#submitButton:hover,
+button[type="submit"]:hover {
+  background-color: #074035;
+}
+
+/* Errore form */
+#erroreForm {
+  color: red;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+}

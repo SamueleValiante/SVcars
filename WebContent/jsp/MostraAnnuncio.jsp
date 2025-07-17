@@ -94,7 +94,8 @@
 					    <input class="in" type="submit" value="Aggiungi al carrello">
 					</form>
 				
-					<form action="" method="get">
+					<form action="/SVcars/EffettuaAcquistoServlet" method="get">
+						<input type="hidden" name="targa" value="<%= annuncio.getTarga() %>">
 						<input class="in" type="submit" value="Acquista Ora">
 					</form>
 				<%} else {%>

@@ -15,9 +15,19 @@
 			<% 
 				List<AnnuncioBean> listaAnnunci = (List<AnnuncioBean>) request.getAttribute("annunciCarrello"); 
 			    double totale = 0;
+			    HttpSession session2 = request.getSession();
+			    UtenteIscrittoBean user = (UtenteIscrittoBean) session2.getAttribute("utente");
 				if (listaAnnunci != null && !listaAnnunci.isEmpty()) {
 			%>
 				<h2>I tuoi preferiti</h2>
+				
+				<%if(user != null) {%>
+					<%request.getSession().setAttribute("annunciCarrello", listaAnnunci); %>
+				
+					<form action="/SVcars/EffettuaAcquistoServlet" method="get">
+						<br> <input class="ordina" type="submit" value="Acquista tutto">
+					</form>
+				<%} %>
 				<ul>
 					<% for (AnnuncioBean annuncio : listaAnnunci) {
 						String targa = annuncio.getTarga();
@@ -36,10 +46,7 @@
 						</li>
 		
 					<% } %>
-					
-					<form action="" method="get">
-						<input class="ordina" type="submit" value="Acquista tutto">
-					</form>
+				
 			<% } else { %>
 				<h1>Il tuo carrello è vuoto</h1>
 			<% } %>

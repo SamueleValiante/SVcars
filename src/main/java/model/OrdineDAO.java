@@ -333,6 +333,40 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 		return totale;
 	}
 	
+	public List<String> getCodiciTuttiOrdini(String email) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String selectSQL = "SELECT codice_ordine FROM " + OrdineDAO.TABLE_NAME + " WHERE e_mail = ? ";
+		
+		List<String> codici = new ArrayList<String>();
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection(db, username, password);
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			preparedStatement.setString(1, email);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) 
+			{
+				codici.add(rs.getString("codice_ordine"));
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return codici;
+	}
+	
 	
 }
 
