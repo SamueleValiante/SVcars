@@ -98,7 +98,7 @@ public class CreaAnnuncioServlet extends HttpServlet {
     	
     	// salvo l'annuncio nel db
     	try {
-			new AnnuncioDAO().doSave(annuncio);
+    		new AnnuncioDAO().doSave(annuncio);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

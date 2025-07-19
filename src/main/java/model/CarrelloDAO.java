@@ -182,7 +182,7 @@ public class CarrelloDAO implements InterfaceDataAccessObject<CarrelloBean>
 		PreparedStatement preparedStatement = null;
 
 		// ottiene la targa di ogni riferimento al codice_carrello
-		String selectSQL = "SELECT targa FROM Contiene WHERE codice_carrello = ?";
+		String selectSQL = "SELECT c.targa FROM Contiene c INNER JOIN Annuncio a ON c.targa = a.targa WHERE c.codice_carrello = ? AND a.visibilita = 1;";
 
 
 		try {

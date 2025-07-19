@@ -1,45 +1,52 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ page import="model.*" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
-
 <html>
 	<head>
+		<meta charset="UTF-8">
+		<title>Annunci creati</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/carrello.css">
 	</head>
 
 	<body>
+		<% String tipoUtente = request.getAttribute("tipoUtente").toString(); %>
+	
+		<% if(tipoUtente.equals("Amministratore")) {%>
+			<jsp:include page="HeaderAmministratoreOther.jsp"></jsp:include>
+			
+		<%} else if(tipoUtente.equals("Utente_normale")) {%>
+			<jsp:include page="HeaderRegistratoOther.jsp"></jsp:include>
+			
+		<% }else {%>
+			<jsp:include page="HeaderGuestOther.jsp"></jsp:include>
+		<% } %>
+		
 		<div class="pannelloCarrello">
 			<% 
-				List<AnnuncioBean> listaAnnunci = (List<AnnuncioBean>) request.getAttribute("annunciCarrello"); 
-			    double totale = 0;
+				List<AnnuncioBean> listaAnnunci = new AnnuncioDAO().doRetrieveAll("targa");
+			
 			    HttpSession session2 = request.getSession();
 			    UtenteIscrittoBean user = (UtenteIscrittoBean) session2.getAttribute("utente");
-				if (listaAnnunci != null && !listaAnnunci.isEmpty()) {
+			    String email = user.getEmail();
+			  
+				
+			    if (listaAnnunci != null && !listaAnnunci.isEmpty()) {
 			%>
-				<h2>I tuoi preferiti</h2>
+				<h2>I tuoi annunci creati</h2>
 				
-				<%if(user != null) {%>
-					<%request.getSession().setAttribute("annunciCarrello", listaAnnunci); %>
-				
-					<form action="/SVcars/EffettuaAcquistoServlet" method="get">
-						<br> <input class="ordina" type="submit" value="Acquista tutto">
-						<input type="hidden" name="tipoOrdine" value="composto">
-					</form>
-				<%} %>
 				<ul>
 					<% for (AnnuncioBean annuncio : listaAnnunci) {
 						
 							String targa = annuncio.getTarga();
-							totale += annuncio.getPrezzo();
 					%>
 							<li>
 										
 								<div class="annuncio">
 									<img src="${pageContext.request.contextPath}/images/<%= targa %>.jpg" alt="Annuncio">
-									<a href="/SVcars/VisualizzaAnnuncioCarrelloServlet?targa=<%= annuncio.getTarga() %>" class="annuncio-link">
+									<a href="/SVcars/VisualizzaAnnuncioCreatoServlet?targa=<%= annuncio.getTarga() %>" class="annuncio-link">
 										<label class="annuncioTitolo"><%= annuncio.getTitolo() %></label>
 									   	<label class="annuncioLabel"><%= annuncio.getCitta() %></label>
 									    <label class="annuncioPrezzo"><%= (int) annuncio.getPrezzo() %>€</label>
@@ -50,8 +57,14 @@
 						<% } %>
 				
 			<% } else { %>
-				<h1>Il tuo carrello è vuoto</h1>
+				<h1>Nessun annuncio creato finora!</h1>
 			<% } %>
 		</div>
+		
+		<jsp:include page="Footer.jsp"></jsp:include>
+		
+		<script src="${pageContext.request.contextPath}/scripts/validazioneBarra.js"></script>
+		
 	</body>
+
 </html>

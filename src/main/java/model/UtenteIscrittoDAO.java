@@ -252,18 +252,14 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 	}
 	
 	// effettua ordine da singolo annuncio
-	public void effettuaOrdineSingolo(OrdineBean ordine, AnnuncioBean annuncio) throws SQLException
-	{
-		// ordine.prodotti verra passato vuoto a questa funzione, quindi gli inseriremo l'annuncio
-		List<AnnuncioBean> prodotti = ordine.getProdotti();
-		
-		prodotti.add(annuncio);
-		
-		ordine.setProdotti(prodotti);
-		
+	public void effettuaOrdineSingolo(OrdineBean ordine, AnnuncioBean annuncio, UtenteIscrittoBean utente) throws SQLException
+	{	
 		// salviamo l'ordine, la fattura e le corrispondenze acquistate nel db
 		OrdineDAO dao = new OrdineDAO();
 		dao.doSave(ordine);
+		
+		rimuoviAnnuncioCarrello(annuncio, utente.getCodice_carrello());
+		new AnnuncioDAO().doDelete(annuncio.getTarga());
 	}
 	
 	// effettua ordine da carrello
@@ -341,7 +337,7 @@ public class UtenteIscrittoDAO implements InterfaceDataAccessObject<UtenteIscrit
 
 	    String updateSQL = "UPDATE Annuncio SET titolo = ?, descrizione = ?, prezzo = ?, tipologia = ?, colore = ?, " +
 	                       "km = ?, anno = ?, carburante = ?, marca = ?, modello = ?, cilindrata = ?, n_porte = ?, " +
-	                       "citta = ?, e_mail = ?, visibilita = ? WHERE targa = ?";
+	                       "città = ?, e_mail = ?, visibilita = ? WHERE targa = ?";
 
 	    try {
 	        connection = DriverManagerConnectionPool.getConnection(db, username, password);

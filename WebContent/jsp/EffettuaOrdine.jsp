@@ -30,7 +30,7 @@
 			<div id=quadratoOrdine>
 				<h2>Crea nuovo ordine</h2>
 				
-				<form id="annuncioForm" action="${pageContext.request.contextPath}/EffettuaOrdineServlet" method="post" enctype="multipart/form-data">
+				<form id="annuncioForm" action="${pageContext.request.contextPath}/EffettuaOrdineServlet" method="post">
 					<div class="rigaDettaglio"><label class="Label2">Indirizzo Sorgente: </label><label class="Label">Viale del bosco, 5, Milano</label></div> 
 				
 					<div class="rigaDettaglio"><label class="Label2">Indirizzo Destinazione: </label></div>
@@ -45,7 +45,10 @@
 					<div class="rigaDettaglio"><label class="Label2">Scadenza carta: </label></div>
 					<input type="date" id="" name="dataScad" class="input">
 					
-					<input type="hidden" name="totale" value="<%= (double)request.getAttribute("totale") + 100 %>">
+					<% Double totaleAttr = (Double) request.getAttribute("totale");
+  					   double totaleOrdine = totaleAttr != null ? totaleAttr + 100 : 0;
+					%>
+					<input type="hidden" name="totale" value="<%= totaleOrdine %>">
 					
 					<div class="rigaDettaglio"><label class="Label2">CVV carta: </label></div>
 					<input type="text" id="CVV" name="CVV" class="input" placeholder="Inserisci CVV">
@@ -60,6 +63,8 @@
 					
 					<div class="rigaDettaglio"><label class="totaleLabel">Totale: </label><label class="Labeltotale"> <%= Integer.valueOf(((Double)request.getAttribute("totale")).intValue()) + 100%> €</label></div>
 				
+					<% request.setAttribute("totale", Integer.valueOf(((Double)request.getAttribute("totale")).intValue()) + 100); %>
+					
 					<input id="submitButton" type="submit" value="Effettua ordine">
 				</form>
 				

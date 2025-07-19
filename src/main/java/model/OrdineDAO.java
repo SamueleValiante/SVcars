@@ -39,8 +39,14 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 
-		try {
+		try 
+		{
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
+			
+			// salva la fattura relativa all'ordine all'interno della tabella Fattura
+			FatturaDAO daofattura = new FatturaDAO();
+			daofattura.doSave(new FatturaBean(ordine.getCodiceFattura()));
+			
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setString(1, ordine.getCodice_ordine());
 			preparedStatement.setString(2, ordine.getIndirizzo_origine());
@@ -65,10 +71,6 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 				
 				preparedStatement2.executeUpdate();
 			}
-			
-			// salva la fattura relativa all'ordine all'interno della tabella Fattura
-			FatturaDAO daofattura = new FatturaDAO();
-			daofattura.doSave(new FatturaBean(ordine.getCodiceFattura()));
 
 		} finally {
 			try {
@@ -225,7 +227,7 @@ public class OrdineDAO implements InterfaceDataAccessObject<OrdineBean>
 			AnnuncioDAO dao = new AnnuncioDAO();
 				
 			while (rs.next()) {
-				annunci.add(dao.doRetrieveByKey(rs.getString("targa")));
+				annunci.add(dao.doRetrieveByKeySpec(rs.getString("targa")));
 			}
 
 		} 

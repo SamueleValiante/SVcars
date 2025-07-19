@@ -74,7 +74,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 
 		AnnuncioBean bean = new AnnuncioBean();
 
-		String selectSQL = "SELECT * FROM " + AnnuncioDAO.TABLE_NAME + " WHERE targa = ? AND visibilita = true;";
+		String selectSQL = "SELECT * FROM " + AnnuncioDAO.TABLE_NAME + " WHERE targa = ? AND visibilita = 1;";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -85,7 +85,52 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 
 			while (rs.next()) {
 				bean.setTarga(rs.getString("targa"));
-				bean.setVisibilita(rs.getBoolean("visibilita"));
+				bean.setVisibilita(true);
+				bean.setTitolo(rs.getString("titolo"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setPrezzo(rs.getDouble("prezzo"));
+				bean.setTipologia(rs.getString("tipologia"));
+				bean.setColore(rs.getString("colore"));
+				bean.setKm(rs.getInt("km"));
+				bean.setAnno(rs.getInt("anno"));
+				bean.setCarburante(rs.getString("carburante"));
+				bean.setMarca(rs.getString("marca"));
+				bean.setModello(rs.getString("modello"));
+				bean.setCilindrata(rs.getInt("cilindrata"));
+				bean.setN_porte(rs.getInt("n_porte"));
+				bean.setCitta(rs.getString("città"));
+				bean.setEmail(rs.getString("e_mail"));
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return bean;
+	}
+	
+	public synchronized AnnuncioBean doRetrieveByKeySpec(String targa) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		AnnuncioBean bean = new AnnuncioBean();
+
+		String selectSQL = "SELECT * FROM " + AnnuncioDAO.TABLE_NAME + " WHERE targa = ?";
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection(db, username, password);
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, targa);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				bean.setTarga(rs.getString("targa"));
+				bean.setVisibilita(true);
 				bean.setTitolo(rs.getString("titolo"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setPrezzo(rs.getDouble("prezzo"));
@@ -122,7 +167,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 		int result = 0;
 
 		// modifica la visibilità dell annuncio
-		String modificaSQL = "UPDATE Annuncio SET visibilita = false WHERE targa = ?";
+		String modificaSQL = "UPDATE Annuncio SET visibilita=0 WHERE targa = ?";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -132,7 +177,8 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 			preparedStatement.setString(1, targa);
 			
 			// rende non visibile l'annuncio e ne cancella i riferimenti da tutti i carrelli che lo contengono
-			result = preparedStatement.executeUpdate() + cancellaRiferimenti(targa);
+			preparedStatement.executeUpdate();
+			cancellaRiferimenti(targa);
 
 		} finally {
 			try {
@@ -152,7 +198,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 
 		List<AnnuncioBean> annunci = new ArrayList<>();
 
-		String selectSQL = "SELECT * FROM " + AnnuncioDAO.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + AnnuncioDAO.TABLE_NAME + " WHERE visibilita=1";
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -168,7 +214,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 				AnnuncioBean bean = new AnnuncioBean();
 
 				bean.setTarga(rs.getString("targa"));
-				bean.setVisibilita(rs.getBoolean("visibilita"));
+				bean.setVisibilita(true);
 				bean.setTitolo(rs.getString("titolo"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setPrezzo(rs.getDouble("prezzo"));
@@ -278,7 +324,7 @@ public class AnnuncioDAO implements InterfaceDataAccessObject<AnnuncioBean>
 	public void restoreAnnuncio(String targa) throws SQLException
 	{
 		Connection conn = DriverManagerConnectionPool.getConnection(db, username, password);
-	    PreparedStatement ps = conn.prepareStatement("UPDATE Annuncio SET visibilita = true WHERE targa = ?");
+	    PreparedStatement ps = conn.prepareStatement("UPDATE Annuncio SET visibilita =1 WHERE targa = ?");
 	    ps.setString(1, targa);
 	    ps.executeUpdate();
 	}

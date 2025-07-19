@@ -48,6 +48,8 @@ public class EffettuaAcquistoServlet extends HttpServlet {
 			}
 			
 			request.setAttribute("targhe", targhe);
+			request.getSession().setAttribute("targhe", targhe);
+			request.getSession().setAttribute("tipoOrdine", "composto");
 			request.setAttribute("totale", totale);
 			request.getRequestDispatcher("jsp/EffettuaOrdine.jsp").forward(request, response);
 			
@@ -56,6 +58,8 @@ public class EffettuaAcquistoServlet extends HttpServlet {
 		
 		// imposto la request per la jsp per impostare gli annunci e il totale
 		request.setAttribute("targa", targa);
+		request.getSession().setAttribute("targa", targa);
+		request.getSession().setAttribute("tipoOrdine", "singolo");
 		request.setAttribute("totale", totale);
 		request.getRequestDispatcher("jsp/EffettuaOrdine.jsp").forward(request, response);
 	}

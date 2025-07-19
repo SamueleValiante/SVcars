@@ -27,7 +27,7 @@
 				
 					<ul id="dropdown-menu" class="hidden">
 				  		<li><a href="/SVcars/jsp/CreaAnnuncio.jsp">Crea annuncio</a></li>
-				    	<li><a href="/SVcars/jsp/ordini.jsp">I miei ordini</a></li>
+				    	<li><a href="/SVcars/jsp/MostraOrdini.jsp">I miei ordini</a></li>
 				    	<li><a href="/SVcars/jsp/mieiAnnunci.jsp">I miei annunci</a></li>
 				    	<li><a href="/SVcars/EffettuaLogoutServlet">Logout</a></li>
 					</ul>

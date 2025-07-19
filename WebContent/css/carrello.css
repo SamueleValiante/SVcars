@@ -23,7 +23,9 @@ body {
 .pannelloCarrello {
     padding: 20px;
     max-width: 1200px;
-    height: 1200px;
+    height: auto;
+    min-height: 1000px;
+    max-height: 2500px;
     margin: 0 auto;
 }
 

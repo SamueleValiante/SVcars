@@ -46,12 +46,8 @@ public class GeneraCodici
 	}
 	
 	// genera codice fattura
-	public String generaCodiceFattura(String codice_ordine)
+	public String generaCodiceFattura()
 	{
-		String codice = new String();
-		
-		codice = "codice_fattura" + codice_ordine;
-		
-		return codice;
+		return "codice_fattura" + UUID.randomUUID().toString();
 	}
 }
