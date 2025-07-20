@@ -99,3 +99,90 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #074035;
 }
+
+@media (max-width: 1024px) {
+  #quadratoAnnuncio {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    padding: 1.5rem;
+  }
+
+  .input,
+  textarea,
+  select,
+  input[type="file"] {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.95rem;
+  }
+
+  #submitButton {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  #annuncioLabel {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  #quadratoAnnuncio {
+    width: 95%;
+    padding: 1.2rem;
+  }
+
+  #quadratoAnnuncio h2 {
+    font-size: 1.6rem;
+  }
+
+  .input,
+  textarea,
+  select,
+  input[type="file"] {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  #submitButton {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #quadratoAnnuncio {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0;
+  }
+
+  #quadratoAnnuncio h2 {
+    font-size: 1.4rem;
+  }
+
+  .input,
+  textarea,
+  select,
+  input[type="file"] {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  #submitButton {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  #erroreForm {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+

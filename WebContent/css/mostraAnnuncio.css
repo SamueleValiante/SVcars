@@ -118,4 +118,120 @@ label.Label2 {
 	font-size: 15px;
 }
 
+@media (max-width: 1024px) {
+  .pannelloVerde {
+    width: 90%;
+    padding: 30px;
+    margin: 40px auto;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  .Label, .Label2 {
+    font-size: 18px;
+    margin-bottom: 30px;
+    margin-right: 0;
+  }
+
+  #azioni {
+    margin-left: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .in {
+    width: 180px;
+    height: 45px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pannelloVerde {
+    width: 95%;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 1.3em;
+    margin-top: 20px;
+  }
+
+  label.Label2, .Label {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 25px;
+    text-align: left;
+  }
+
+  .rigaDettaglio {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #azioni {
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .in {
+    width: 160px;
+    height: 42px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pannelloVerde {
+    width: 100%;
+    padding: 15px;
+    border-radius: 0;
+  }
+
+  h1 {
+    font-size: 1.4em;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  label.Label2, .Label {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .rigaDettaglio {
+    flex-direction: column;
+  }
+
+  #descrizione .Label {
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
+  .in {
+    width: 140px;
+    height: 40px;
+    font-size: 13px;
+  }
+
+  #azioni {
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 

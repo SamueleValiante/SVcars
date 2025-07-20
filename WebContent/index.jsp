@@ -27,8 +27,8 @@
 		
 		
 			<div class="layout-container">
-	        	<jsp:include page="jsp/SidebarSX.jsp" />
-	        	<jsp:include page="jsp/VisualizzaAnnunci.jsp" />
+	        	<div class="sidebar"><jsp:include page="jsp/SidebarSX.jsp" /></div>
+	        	<div class="pannelloCentrale"><jsp:include page="jsp/VisualizzaAnnunci.jsp" /></div>
 	    	</div>
 		
 		<jsp:include page="jsp/Footer.jsp"></jsp:include>

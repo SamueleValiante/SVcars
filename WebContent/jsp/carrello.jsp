@@ -7,6 +7,7 @@
 
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/carrello.css">
 	</head>
 
@@ -20,15 +21,20 @@
 				if (listaAnnunci != null && !listaAnnunci.isEmpty()) {
 			%>
 				<h2>I tuoi preferiti</h2>
-				
-				<%if(user != null) {%>
-					<%request.getSession().setAttribute("annunciCarrello", listaAnnunci); %>
-				
-					<form action="/SVcars/EffettuaAcquistoServlet" method="get">
-						<br> <input class="ordina" type="submit" value="Acquista tutto">
-						<input type="hidden" name="tipoOrdine" value="composto">
+				<div id="inputs">
+					<%if(user != null) {%>
+						<%request.getSession().setAttribute("annunciCarrello", listaAnnunci); %>
+					
+						<form action="/SVcars/EffettuaAcquistoServlet" method="get">
+							<br> <input class="ordina" type="submit" value="Acquista tutto">
+							<input type="hidden" name="tipoOrdine" value="composto">
+						</form>
+					<%} %>
+					
+					<form action="/SVcars/SvuotaCarrelloServlet" method="get">
+						<br> <input class="svuota" type="submit" value="Svuota carrello">
 					</form>
-				<%} %>
+				</div>
 				<ul>
 					<% for (AnnuncioBean annuncio : listaAnnunci) {
 						

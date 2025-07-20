@@ -118,4 +118,105 @@ input[name="barraRicerca"]:focus {
   background-color: black;
 }
 
+/* ✅ Layout responsive per tablet e mobile */
+@media (max-width: 1024px) {
+  /* Header in colonna */
+  header {
+    align-items: center;
+    height: auto;
+    /*min-height: 200px;*/
+    padding: 20px 10px;
+  }
+
+  /* Logo centrato e con meno padding */
+  p#logo {
+    padding: 10px 0;
+    font-size: 20px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Barra di ricerca in colonna, centrata */
+  div#barraecerca {
+    align-items: center;
+    width: 100%;
+    margin-left: 140px;
+    margin-top: 10px;
+  }
+
+  	input#cerca
+	{
+		padding: 5px 5px;
+	}
+
+  input[name="barraRicerca"] {
+    width: 50%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  
+
+  /* Menu e carrello disposti orizzontalmente e centrati */
+  form#menu {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  input#menuIn,
+  input#carrelloIn {
+    width: 40px;
+    padding: 10px;
+  }
+
+  /* Menu a tendina centrato */
+  #menu-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  #dropdown-menu {
+    right: 100%;
+    transform: translateX(50%);
+    width: 100%;
+  }
+}
+
+/* ✅ Ottimizzazione per smartphone */
+@media (max-width: 600px) {
+  p#logo {
+    font-size: 18px;
+  }
+  
+  /* Barra di ricerca in colonna, centrata */
+  div#barraecerca {
+    align-items: center;
+    width: 100%;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+
+  input[name="barraRicerca"] {
+    font-size: 13px;
+  }
+
+  input#cerca {
+    font-size: 8px;
+    height: 20px;
+    width: 20px;
+  }
+
+  #dropdown-menu li a {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}
+
+
 

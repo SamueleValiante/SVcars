@@ -114,3 +114,105 @@ button[type="submit"]:hover {
   margin-top: 15px;
   text-align: center;
 }
+
+@media (max-width: 1024px) {
+  #quadratoOrdine {
+    width: 90%;
+    padding: 1.5rem 2rem;
+  }
+
+  .Label2,
+  .Label,
+  .Labeltotale,
+  .totaleLabel {
+    font-size: 18px;
+    min-width: unset;
+    flex: 1 1 100%;
+    text-align: left;
+  }
+
+  .input {
+    font-size: 0.95rem;
+  }
+
+  #submitButton {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  #quadratoOrdine {
+    width: 95%;
+    padding: 1.2rem;
+  }
+
+  #quadratoOrdine h2 {
+    font-size: 1.7rem;
+  }
+
+  .Label2,
+  .Label,
+  .Labeltotale,
+  .totaleLabel {
+    font-size: 16px;
+  }
+
+  .rigaDettaglio {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 25px;
+  }
+
+  .input {
+    font-size: 0.9rem;
+  }
+
+  #submitButton {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  #quadratoOrdine {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0;
+  }
+
+  #quadratoOrdine h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .Label2,
+  .Label,
+  .Labeltotale,
+  .totaleLabel {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .rigaDettaglio {
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+
+  .input {
+    font-size: 0.85rem;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  #submitButton {
+    font-size: 0.9rem;
+    padding: 10px;
+    width: 100%;
+  }
+
+  #erroreForm {
+    font-size: 0.9rem;
+  }
+}
+

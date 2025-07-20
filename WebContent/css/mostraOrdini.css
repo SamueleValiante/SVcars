@@ -51,3 +51,85 @@ body {
 .visualizzaBtn:hover {
   background-color: #074035;
 }
+
+@media (max-width: 1024px) {
+  .containerOrdini {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .containerOrdini h2 {
+    font-size: 1.8rem;
+  }
+
+  .ordineCard {
+    padding: 20px;
+  }
+
+  .ordineCard p {
+    font-size: 1rem;
+  }
+
+  .visualizzaBtn {
+    font-size: 0.95rem;
+    padding: 9px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .containerOrdini {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .containerOrdini h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .ordineCard {
+    padding: 18px;
+    margin-bottom: 25px;
+  }
+
+  .ordineCard p {
+    font-size: 0.95rem;
+  }
+
+  .visualizzaBtn {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .containerOrdini {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .containerOrdini h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  .ordineCard {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .ordineCard p {
+    font-size: 0.85rem;
+    margin: 8px 0;
+  }
+
+  .visualizzaBtn {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 10px;
+    margin-top: 12px;
+  }
+}
+

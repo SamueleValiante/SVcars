@@ -9,6 +9,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>SVcars Ricerca</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/PannelloSidebar.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizzaAnnunci.css">
 	</head>
@@ -44,10 +45,12 @@
 								<li>
 									<div class="annuncio">
 										<img src="${pageContext.request.contextPath}/images/<%= targa %>.jpg" alt="Annuncio">
-										<label class="annuncioTitolo"><%out.print(annuncio.getTitolo()); %></label>
-										<label class="annuncioLabel"><%=" "+ annuncio.getCitta() %></label>
-										<label class="annuncioPrezzo"><%= (int) annuncio.getPrezzo() %>€</label>
-									</div>
+										<a href="/SVcars/VisualizzaAnnuncioServlet?targa=<%= annuncio.getTarga() %>" class="annuncio-link">
+								            <label class="annuncioTitolo"><%= annuncio.getTitolo() %></label>
+								            <label class="annuncioLabel"><%= annuncio.getCitta() %></label>
+								            <label class="annuncioPrezzo"><%= (int) annuncio.getPrezzo() %>€</label>
+								        </a>
+								    </div>
 								</li>
 							<% } %>
 						</ul>

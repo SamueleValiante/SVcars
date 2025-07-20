@@ -81,9 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	        li.innerHTML = `
 	            <div class="annuncio">
 	                <img src="${contextPath}/images/${annuncio.targa}.jpg" alt="Annuncio">
-	                <label class="annuncioTitolo">${annuncio.titolo}</label>
-	                <label class="annuncioLabel">${annuncio.citta}</label>
-	                <label class="annuncioPrezzo">${annuncio.prezzo}€</label>
+					<a href="/SVcars/VisualizzaAnnuncioServlet?targa=${annuncio.targa}" class="annuncio-link">
+						<label class="annuncioTitolo">${annuncio.titolo}</label>
+	                	<label class="annuncioLabel">${annuncio.citta}</label>
+	                	<label class="annuncioPrezzo">${annuncio.prezzo}€</label>
+					</a>
 	            </div>
 	        `;
 	        ul.appendChild(li);

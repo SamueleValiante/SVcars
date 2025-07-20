@@ -12,6 +12,7 @@
 		<title>SVcars Annuncio</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mostraAnnuncio.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/PannelloSidebar.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	
 	<body>

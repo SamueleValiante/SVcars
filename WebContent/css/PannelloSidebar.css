@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .layout-container {
-    display: flex;       
+    display: flex;   		    
     height: 100%;        
 }
 
@@ -52,7 +52,7 @@ div#labelMain h2
 
 section.filtri
 {
-	width: 18%;
+	width: 350px;
 	height: 1400px;
 	background-color: #145946;
 	display: flex;
@@ -102,6 +102,192 @@ input#submitButton {
 div.pannelloCetrale h1{
 	margin-top: 20px;
 	margin-left: 30px;
+}
+
+/* ✅ Responsive layout tablet (max 1024px) */
+@media (max-width: 1024px) {
+.layout-container {
+	display: flex;  
+	width: auto;
+	max-width: 1024px;
+	flex-direction: row; 		    
+	height: 100%;        
+}
+
+.layout-container .pannelloCentrale
+{
+	flex: 2;
+    padding: 20px;
+	background-color: #B0D9D1;
+	align-items: center;
+	
+}
+	
+	
+  .layout-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  section.filtri
+{
+	width: 110%;
+	height: auto;
+	background-color: #145946;
+	display: flex;
+	align-items: flex-start;
+  	flex-direction: column;
+}
+
+.filtro{
+	width: 140%;
+}
+
+  .pannelloCentrale {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .pannelloCentrale h1,
+  .pannelloCentrale h2 {
+    font-size: 26px;
+    text-align: center;
+    padding: 15px 10px;
+  }
+
+  .annuncio-link .offerta {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .annuncio-link .offerta img {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .dati-offerta {
+    width: 90%;
+    padding: 15px;
+    align-items: left;
+    margin-left: 10px;
+    text-align: center;
+  }
+
+  .offerta label.offertaTitolo {
+    font-size: 26px;
+  }
+
+  .offerta label.offertaLabel {
+    font-size: 14px;
+  }
+
+  .offerta label.offertaPrezzo {
+    font-size: 22px;
+  }
+
+  .pannelloCentrale ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .annuncio label.annuncioTitolo,
+  .annuncio label.annuncioLabel,
+  .annuncio label.annuncioPrezzo {
+    font-size: 16px;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .annuncio label.annuncioPrezzo {
+    margin-top: 5px;
+  }
+  
+  input#submitButton {
+  	margin-bottom: 30px;
+  }
+}
+
+/* ✅ Smartphone (max 768px) */
+@media (max-width: 768px) {
+  .pannelloCentrale {
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .pannelloCentrale h1,
+  .pannelloCentrale h2 {
+    font-size: 20px;
+    padding: 10px;
+  }
+ 
+  .offerta label.offertaTitolo {
+    font-size: 22px;
+  }
+
+  .offerta label.offertaLabel {
+    font-size: 13px;
+  }
+
+  .offerta label.offertaPrezzo {
+    font-size: 18px;
+  }
+
+  .pannelloCentrale ul {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .annuncio {
+    text-align: center;
+  }
+
+  .annuncio label.annuncioTitolo,
+  .annuncio label.annuncioLabel,
+  .annuncio label.annuncioPrezzo {
+    font-size: 14px;
+    margin-left: 0;
+  }
+
+  .annuncio label.annuncioPrezzo {
+    margin-top: 5px;
+  }
+  
+  input#submitButton {
+  	margin-bottom: 30px;
+  }
+}
+
+/* ✅ Ultra-small devices (max 480px) */
+@media (max-width: 480px) {
+  .pannelloCentrale h1,
+  .pannelloCentrale h2 {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  .offerta label.offertaTitolo {
+    font-size: 20px;
+  }
+
+  .offerta label.offertaLabel,
+  .offerta label.offertaPrezzo {
+    font-size: 12px;
+  }
+
+  .annuncio label.annuncioTitolo,
+  .annuncio label.annuncioLabel,
+  .annuncio label.annuncioPrezzo {
+    font-size: 12px;
+  }
+
+  .annuncio img {
+    height: 150px;
+  }
+  
+  input#submitButton {
+  	margin-bottom: 30px;
+  }
 }
 
 
