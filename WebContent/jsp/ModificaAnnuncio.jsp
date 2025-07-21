@@ -13,6 +13,18 @@
   </head>
 
   <body>
+  	<% String tipoUtente = request.getAttribute("tipoUtente").toString(); %>
+	
+		<% if(tipoUtente.equals("Amministratore")) {%>
+			<jsp:include page="HeaderAmministratoreOther.jsp"></jsp:include>
+			
+		<%} else if(tipoUtente.equals("Utente_normale")) {%>
+			<jsp:include page="HeaderRegistratoOther.jsp"></jsp:include>
+			
+		<% }else {%>
+			<jsp:include page="HeaderGuestOther.jsp"></jsp:include>
+		<% } %>
+  
     <div id="quadratoAnnuncio">
       <h2>Modifica annuncio</h2>
 
@@ -116,7 +128,7 @@
 		</select>
 
 
-        <input type="text" name="prezzo" value="<%= annuncio.getPrezzo() %>" class="input">
+        <input type="text" name="prezzo" value="<%= (int)annuncio.getPrezzo() %>" class="input">
         <input type="text" name="km" value="<%= annuncio.getKm() %>" class="input">
         <input type="text" name="anno" value="<%= annuncio.getAnno() %>" class="input">
 
@@ -163,6 +175,8 @@
         <input id="submitButton" type="submit" value="Modifica annuncio">
       </form>
     </div>
+
+	<jsp:include page="Footer.jsp"></jsp:include>
 
     <script src="${pageContext.request.contextPath}/scripts/modelliDinamicamenteAnnuncio.js"></script>
   </body>

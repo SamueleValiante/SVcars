@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -39,8 +42,13 @@ public class EffettuaRicercaServlet extends HttpServlet
 			    boolean valido = true;
 
 			    if (request.getParameter("barraRicerca") != null && !request.getParameter("barraRicerca").isEmpty())
+			    {
 			        if (!annuncio.getTitolo().toLowerCase().contains(request.getParameter("barraRicerca").toLowerCase()))
-			            valido = false;
+			        	valido = false;
+			        filtro = false;
+			    }
+			    else
+			    	filtro = true;
 			    
 			    if (request.getParameter("barraRicercaFiltro") != null && !request.getParameter("barraRicercaFiltro").isEmpty())
 			        if (!annuncio.getTitolo().toLowerCase().contains(request.getParameter("barraRicercaFiltro").toLowerCase()))
@@ -91,12 +99,14 @@ public class EffettuaRicercaServlet extends HttpServlet
 			    }
 			}
 			
-			
-			request.setAttribute("annunciCercati", annunciFiltrati);
-			request.getRequestDispatcher("jsp/ricerca.jsp").forward(request, response);
+			if(filtro)
+			{
+				request.setAttribute("annunciCercati", annunciFiltrati);
+				request.getRequestDispatcher("jsp/ricerca.jsp").forward(request, response);
+			}
 				
 			
-			/*response.setContentType("application/json");
+			response.setContentType("application/json");
 			JSONArray jsonArray = new JSONArray();
 
 			for (AnnuncioBean annuncio : annunciFiltrati) {
@@ -114,7 +124,7 @@ public class EffettuaRicercaServlet extends HttpServlet
 			    jsonArray.put(obj);
 			}
 
-			response.getWriter().print(jsonArray.toString());*/
+			response.getWriter().print(jsonArray.toString());
 				
 		} 
 		catch (SQLException e) {
